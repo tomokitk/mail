@@ -1,0 +1,5 @@
+AuthType     Basic
+AuthName     "Authentication Sample"
+AuthGroupFile /dev/null
+AuthUserFile /opt/mail/mail_app/.thpasswd
+require valid-user
