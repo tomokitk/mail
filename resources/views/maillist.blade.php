@@ -9,10 +9,42 @@
 </head>
 <body>
   <p>Hello World!!</p>
-  <form method="post" action={{url('')}}>
+  <form method="post" action={{url('/maillist')}}>
+  {{ csrf_field() }}
   <h1>管理者画面</h1>
   <input type="submit" name="submit_value"     value="csv import">
-  <input type="submit" name="submit_value"     value="csv export">
+  <form name="myform"><br/>
+    <textarea name="output" cols="80" rows="10"></textarea>
+    <input name="myfile" type="file" />
+  </form>
+  
+  <script>
+    //Form要素を取得する
+    var form = document.forms.myform;
+    console.log(form);
+    //ファイルが読み込まれた時の処理
+    form.myfile.addEventListener('change', function(e) {
+      var result = e.target.files[0];
+ 
+    //FileReaderのインスタンスを作成する
+      var reader = new FileReader();
+  
+    //読み込んだファイルの中身を取得する
+      reader.readAsText( result );
+      //console.log(result);
+  
+    //ファイルの中身を取得後に処理を行う
+      reader.addEventListener( 'load', function() {
+    
+        //ファイルの中身をtextarea内に表示する
+        form.output.textContent = reader.result;    
+      })
+ 
+  
+      
+    })
+  </script>
+  <input type="submit" name="sub"     value="csv export">
 
 <form>
   <div class="col-sm-4" style="padding:20px 0; padding-left:0px;">
@@ -39,10 +71,15 @@ padding-left: 15px;
 }
  </style>
  <table class="table" border=1>
-  <tr><th></th><th>ID</th><th>部署名</th><th>役職名</th><th>氏名</th><th>E-MAIL</th><th>郵便番号</th><th>住所</th><th>TEL会社</th><th>TEL部門</th><th>TEL直通</th><th>FAX</th><th>携帯番号</th><th>URL</th><th>名刺交換日</th><th>Eightでつながっている人</th><th>再データ化中の名刺</th><th>'?'を含んだデータ</th></tr>
-  <tr><td>行-1</td><td>A-1</td><td>B-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td></tr>
-  <tr><td>行-1</td><td>A-1</td><td>B-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td></tr>
-  <tr><td>行-1</td><td>A-1</td><td>B-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td></tr>
+
+  
+  <tr><th></th><th>ID</th><th>会社名</th><th>部署名</th><th>役職名</th><th>氏名</th><th>E-MAIL</th><th>郵便番号</th><th>住所</th><th>TEL会社</th><th>TEL部門</th><th>TEL直通</th><th>FAX</th><th>携帯番号</th><th>URL</th><th>名刺交換日</th><th>Eightでつながっている人</th><th>再データ化中の名刺</th><th>'?'を含んだデータ</th></tr>
+  
+  
+  <tr><td>行-1</td><td>A-1</td><td>B-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>delete</td><td>save</td></tr>
+  
+  <tr><td>行-1</td><td>A-1</td><td>B-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>delete</td><td>save</td></tr>
+  <tr><td>行-1</td><td>A-1</td><td>B-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>delete</td><td>save</td></tr>
 </table>
 
 </body>

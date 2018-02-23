@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('maillist');
+Route::get('/', 'MaillistController@maillist');
 
 
-Route::post('import','ImportController@import');
-});
+Route::post('/import','ImportController@import');
+Route::post('/mailllist','MaillistController@maillist');
