@@ -9,7 +9,7 @@
 </head>
 <body>
   <p>Hello World!!</p>
-
+  <form method="post" action={{url('')}}>
   <h1>管理者画面</h1>
   <input type="submit" name="submit_value"     value="csv import">
   <input type="submit" name="submit_value"     value="csv export">

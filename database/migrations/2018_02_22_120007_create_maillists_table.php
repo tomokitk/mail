@@ -15,22 +15,23 @@ class CreateMaillistsTable extends Migration
     {
         Schema::create('maillist', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('部署名');
-            $table->string('役職');
-            $table->string('氏名');
+            $table->string('conpany');
+            $table->string('department');
+            $table->string('position');
+            $table->string('name');
             $table->string('e-mail');
-            $table->integer('郵便番号');
-            $table->string('住所');
-            $table->string('TEL会社');
-            $table->string('TEl部門');
-            $table->string('TEl直通');
+            $table->integer('postcode');
+            $table->string('adress');
+            $table->string('TELcompany');
+            $table->string('TELdepartment');
+            $table->string('TELdirect');
             $table->string('FAX');
-            $table->string('携帯番号');
+            $table->string('phonenumber');
             $table->text('URL');
-            $table->string('名刺交換日');
-            $table->integer('EIGHTでつながっている人');
-            $table->string('再データ化中の名刺');
-            $table->string('?を含んだデータ');
+            $table->string('trade_day');
+            $table->integer('eightfrinds_num');
+            $table->string('now_dating');
+            $table->string('?');
             $table->timestamps();
         });
     }
