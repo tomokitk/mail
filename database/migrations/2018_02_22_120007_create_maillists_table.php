@@ -15,11 +15,11 @@ class CreateMaillistsTable extends Migration
     {
         Schema::create('maillist', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('conpany');
+            $table->string('company');
             $table->string('department');
             $table->string('position');
             $table->string('name');
-            $table->string('e-mail');
+            $table->string('e_mail');
             $table->integer('postcode');
             $table->string('adress');
             $table->string('TELcompany');
@@ -31,7 +31,7 @@ class CreateMaillistsTable extends Migration
             $table->string('trade_day');
             $table->integer('eightfrinds_num');
             $table->string('now_dating');
-            $table->string('?');
+            $table->string('question');
             $table->timestamps();
         });
     }

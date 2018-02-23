@@ -46,15 +46,12 @@
   </script>
   <input type="submit" name="sub"     value="csv export">
 
-<form>
-  <div class="col-sm-4" style="padding:20px 0; padding-left:0px;">
-
-  <div class="form-group">
-  <input type="text" name="keyword" value="入力" placeholder="名前を入力してください">
-  <input type="text" name="keyword" value="入力" placeholder="名前を入力してください">
-  <input type="text" name="keyword" value="入力" placeholder="名前を入力してください">
-  </div>
-  <input type="submit" value="検索" class="btn btn-info">
+<div class="col-sm-4" style="padding:20px 0; padding-left:0px;">
+<form class="form-inline" action="{{'/search'}}" >
+    <div class="form-group">
+      <input type="text" name="keyword" value="入力" placeholder="名前を入力してください">
+    </div>
+    <input type="submit" value="検索" class="btn btn-info">
 </form>
 </div>
   <style>
@@ -73,13 +70,13 @@ padding-left: 15px;
  <table class="table" border=1>
 
   
-  <tr><th></th><th>ID</th><th>会社名</th><th>部署名</th><th>役職名</th><th>氏名</th><th>E-MAIL</th><th>郵便番号</th><th>住所</th><th>TEL会社</th><th>TEL部門</th><th>TEL直通</th><th>FAX</th><th>携帯番号</th><th>URL</th><th>名刺交換日</th><th>Eightでつながっている人</th><th>再データ化中の名刺</th><th>'?'を含んだデータ</th></tr>
+  <tr><th></th><th>ID</th><th>会社名</th><th>部署名</th><th>役職名</th><th>氏名</th><th>E-MAIL</th><th>郵便番号</th><th>住所</th><th>TEL会社</th><th>TEL部門</th><th>TEL直通</th><th>FAX</th><th>携帯番号</th><th>URL</th><th>名刺交換日</th><th>Eightでつながっている人</th><th>再データ化中の名刺</th><th>'?'を含んだデータ</th><th>アクションキー</th></tr>
+  @foreach($imports as $import) 
+  <tr> 
+  <td></td><td>{{$import->id}}</td><td>{{$import->company}}</td><td>{{$import->department}}</td><td>{{$import->position}}</td><td>{{$import->name}}</td><td>{{$import->e_mail}}</td><td>{{$import->postcode}}</td><td>{{$import->adress}}</td><td>{{$import->TELcompany}}</td><td>{{$import->TELdepartment}}</td><td>{{$import->TELdirect}}</td><td>{{$import->FAX}}</td><td>{{$import->phonenumber}}</td><td>{{$import->URL}}</td><td>{{$import->trade_day}}</td><td>{{$import->eightfrinds_num}}</td><td>{{$import->now_dating}}</td><td>{{$import->question}}</td><td>delete/save</td>
+  </tr>
+  @endforeach
   
-  
-  <tr><td>行-1</td><td>A-1</td><td>B-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>delete</td><td>save</td></tr>
-  
-  <tr><td>行-1</td><td>A-1</td><td>B-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>delete</td><td>save</td></tr>
-  <tr><td>行-1</td><td>A-1</td><td>B-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>行-1</td><td>delete</td><td>save</td></tr>
 </table>
 
 </body>

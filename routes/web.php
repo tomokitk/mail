@@ -14,5 +14,7 @@
 Route::get('/', 'MaillistController@maillist');
 
 
-Route::post('/import','ImportController@import');
+//mallist メソッドを呼ぶ
 Route::post('/mailllist','MaillistController@maillist');
+//seach メソッドを呼ぶ
+Route::post('/search','SearchController@search');
