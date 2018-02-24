@@ -14,7 +14,7 @@
   <h1>管理者画面</h1>
   <input type="submit" name="submit_value"     value="csv import">
   <form name="myform"><br/>
-    <textarea name="output" cols="80" rows="10"></textarea>
+    
     <input name="myfile" type="file" />
   </form>
   
@@ -49,7 +49,7 @@
 <div class="col-sm-4" style="padding:20px 0; padding-left:0px;">
 <form class="form-inline" action="{{'/search'}}" >
     <div class="form-group">
-      <input type="text" name="keyword" value="入力" placeholder="名前を入力してください">
+      <input type="text" name="keyword" value="{{$keyword}}" placeholder="名前を入力してください">
     </div>
     <input type="submit" value="検索" class="btn btn-info">
 </form>
