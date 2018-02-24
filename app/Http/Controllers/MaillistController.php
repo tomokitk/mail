@@ -13,7 +13,9 @@ class MaillistController extends Controller
         
         //dd($mail);
         return view('maillist')->with('imports',$mail);
-}
+                                // ->with('keyword',$keyword)
+                                // ->with('keyword2',$keyword2);
+ }
 
 }    
 

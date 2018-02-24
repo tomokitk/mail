@@ -49,7 +49,19 @@
 <div class="col-sm-4" style="padding:20px 0; padding-left:0px;">
 <form class="form-inline" action="{{'/search'}}" >
     <div class="form-group">
+    @if(isset($keyword))
       <input type="text" name="keyword" value="{{$keyword}}" placeholder="名前を入力してください">
+    @else
+    <input type="text" name="keyword" value="名前" placeholder="名前">
+    @endif
+
+    @if(isset($keyword2))
+      <input type="text" name="keyword2" value="{{$keyword2}}" placeholder="名前を入力してください">
+    @else
+    <input type="text" name="keyword2" value="携帯番号" placeholder="携帯番号">
+    @endif
+
+      
     </div>
     <input type="submit" value="検索" class="btn btn-info">
 </form>
