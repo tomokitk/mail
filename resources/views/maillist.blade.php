@@ -52,7 +52,7 @@
 </select>
     <div class="form-group">
     @if(isset($keyword))
-      <input type="text" name="keyword" value="{{$keyword}}" placeholder="名前を入力してください">
+    <input type="text" name="keyword" value="{{$keyword}}" placeholder="名前を入力してください">
     @else
     <input type="text" name="keyword" value="" placeholder="名前">
     @endif
@@ -68,25 +68,26 @@
     @else
     <input type="text" name="keyword3" value="" placeholder="部門">
     @endif
-
+    
     @if(isset($keyword4))
       <input type="text" name="keyword4" value="{{$keyword4}}" placeholder="名前を入力してください">
     @else
     <input type="text" name="keyword4" value="" placeholder="役職名">
     @endif
-
+    
     @if(isset($keyword5))
       <input type="text" name="keyword5" value="{{$keyword5}}" placeholder="名前を入力してください">
     @else
     <input type="text" name="keyword5" value="" placeholder="メールアドレス">
     @endif
-
+    </div>
+    <div class="form-group">
     @if(isset($keyword6))
       <input type="text" name="keyword6" value="{{$keyword6}}" placeholder="名前を入力してください">
     @else
     <input type="text" name="keyword6" value="" placeholder="郵便番号">
     @endif
-
+    
     @if(isset($keyword7))
       <input type="text" name="keyword7" value="{{$keyword7}}" placeholder="名前を入力してください">
     @else
@@ -104,13 +105,14 @@
     @else
     <input type="text" name="keyword9" value="" placeholder="TEL部門">
     @endif
-
+    
     @if(isset($keyword10))
       <input type="text" name="keyword10" value="{{$keyword10}}" placeholder="名前を入力してください">
     @else
     <input type="text" name="keyword10" value="" placeholder="TEL直通">
     @endif
-
+    </div>
+    <div class="form-group">
     @if(isset($keyword11))
       <input type="text" name="keyword11" value="{{$keyword11}}" placeholder="名前を入力してください">
     @else
@@ -134,13 +136,14 @@
     @else
     <input type="text" name="keyword14" value="" placeholder="名刺交換日">
     @endif
-
+    
     @if(isset($keyword15))
       <input type="text" name="keyword15" value="{{$keyword15}}" placeholder="名前を入力してください">
     @else
     <input type="text" name="keyword15" value="" placeholder="Eightでつながっている人数">
     @endif
-
+    </div>
+    <div class="form-group">
     @if(isset($keyword16))
       <input type="text" name="keyword16" value="{{$keyword16}}" placeholder="名前を入力してください">
     @else
@@ -158,7 +161,6 @@
     @else
     <input type="text" name="keyword18" value="" placeholder="id">
     @endif
-      
     </div>
     <input type="submit" value="検索" class="btn btn-info">
 </form>
