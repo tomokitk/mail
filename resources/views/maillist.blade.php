@@ -5,11 +5,12 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
   <meta charset="UTF-8">
+  
   <title>input form</title>
 </head>
 <body>
-  <p>Hello World!!</p>
-  <form method="post" action={{url('/maillist')}}>
+  
+  <form method="post" action={{url('/maillist')}} >
   {{ csrf_field() }}
   <h1>管理者画面</h1>
   <input type="submit" name="submit_value"     value="csv import">
@@ -49,7 +50,7 @@
 <div class="col-sm-4" style="padding:20px 0; padding-left:0px;">
 <form class="form-inline" action="{{'/search'}}" >
 
-</select>
+
     <div class="form-group">
     @if(isset($keyword))
     <input type="text" name="keyword" value="{{$keyword}}" placeholder="名前を入力してください">
@@ -164,6 +165,8 @@
     </div>
     <input type="submit" value="検索" class="btn btn-info">
 </form>
+<form class="form-inline" action="{{'/refresh'}}" >
+<input type="submit" value="表を戻す">
 </div>
   <style>
   .table4 {

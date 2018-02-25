@@ -18,3 +18,4 @@ Route::get('/', 'MaillistController@maillist');
 Route::post('/mailllist','MaillistController@maillist');
 //seach メソッドを呼ぶ
 Route::get('/search','SearchController@search');
+Route::get('/refresh','RefreshController@refresh');
