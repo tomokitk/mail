@@ -9,8 +9,8 @@ class MaillistController extends Controller
 {
     public function maillist(Request $request){
         
-        $mail = Maillist::all();
-        
+        $mail = Maillist::all()->paginate(5);
+       
         //dd($mail);
         return view('maillist')->with('imports',$mail);
                                 // ->with('keyword',$keyword)

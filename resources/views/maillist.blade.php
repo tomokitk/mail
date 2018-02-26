@@ -40,15 +40,22 @@
         //ファイルの中身をtextarea内に表示する
         form.output.textContent = reader.result;    
       })
- 
+    
+     
+    });
+  </script>
   
       
-    })
-  </script>
+    
   <input type="submit" name="sub"     value="csv export">
 
 <div class="col-sm-4" style="padding:20px 0; padding-left:0px;">
+
+
+
+
 <form class="form-inline" action="{{'/search'}}" >
+
 
 
     <div class="form-group">
@@ -164,9 +171,11 @@
     @endif
     </div>
     <input type="submit" value="検索" class="btn btn-info">
+   
 </form>
+
 <form class="form-inline" action="{{'/refresh'}}" >
-<input type="submit" value="表を戻す">
+<input type="submit" value="初期化">
 </div>
   <style>
   .table4 {
@@ -190,6 +199,7 @@ padding-left: 15px;
   <td></td><td>{{$import->id}}</td><td>{{$import->company}}</td><td>{{$import->department}}</td><td>{{$import->position}}</td><td>{{$import->name}}</td><td>{{$import->e_mail}}</td><td>{{$import->postcode}}</td><td>{{$import->adress}}</td><td>{{$import->TELcompany}}</td><td>{{$import->TELdepartment}}</td><td>{{$import->TELdirect}}</td><td>{{$import->FAX}}</td><td>{{$import->phonenumber}}</td><td>{{$import->URL}}</td><td>{{$import->trade_day}}</td><td>{{$import->eightfrinds_num}}</td><td>{{$import->now_dating}}</td><td>{{$import->question}}</td><td>delete/save</td>
   </tr>
   @endforeach
+  {{$imports->appends(Request::except("page"))->links() }}
   
 </table>
 

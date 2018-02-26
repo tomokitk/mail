@@ -32,7 +32,7 @@ class SearchController extends Controller
         
         #クエリ生成
         $query = Maillist::query();
-
+    
         #もしキーワードがあったら
         if(!empty($keyword)){
         $query->where('name','like','%'.$keyword.'%');
@@ -46,7 +46,7 @@ class SearchController extends Controller
         }
         
         if(!empty($keyword4)){
-        $query->where('positon','like','%'.$keyword4.'%');
+        $query->where('position','like','%'.$keyword4.'%');
         }
 
         if(!empty($keyword5)){
@@ -106,6 +106,7 @@ class SearchController extends Controller
         }
 
         $mail = $query->get();
+        $mail = $query->paginate(5);
 
         //dd($mail);
         return view('maillist')->with('imports',$mail)
