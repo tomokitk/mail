@@ -20,3 +20,4 @@ Route::post('/mailllist','MaillistController@maillist');
 Route::get('/search','SearchController@search');
 //refresh メソッドを呼ぶ
 Route::get('/refresh','RefreshController@refresh');
+Route::post('/export','ExportController@export');
