@@ -5,29 +5,30 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
   <meta charset="UTF-8">
-  
+
   <title>input form</title>
+
+
 </head>
 <body>
-  <form method="post" action={{url('/maillist')}} >
-  {{ csrf_field() }}
-  <h1>管理者画面</h1>
-  <input type="submit" name="submit_value"     value="csv import">
-  <h5>CSVファイルの選択 </h5>
-  
+    <h1>管理者画面</h1>
+ <form method="post" action="{{url('/import')}}" enctype="multipart/form-data"> 
+    {{ csrf_field() }}
+  <p>ファイルの選択</p>
+    <input type="file" name="csv_file" id="inputFile" >
+    <input type="submit" name="csv_file"  value="csv_import">     
+
  
 <div class="col-sm-4" style="padding:20px 0; padding-left:0px;">
-
 </form>
 
- <form method="post" action={{url('/export')}}>
- {{ csrf_field() }}
- <input type="submit"  value="csv export">
+ 
+<form method="post" action="{{url('/export')}}" >
+    {{ csrf_field() }}
+    <input type="submit"  value="csv export">
 
+</form>
 <form class="form-inline" action="{{'/search'}}" >
-
-
-
     <div class="form-group">
     @if(isset($keyword))
     <input type="text" name="keyword" value="{{$keyword}}" placeholder="名前を入力してください">
@@ -146,6 +147,7 @@
 
 <form class="form-inline" action="{{'/refresh'}}" >
 <input type="submit" value="初期化">
+</form>
 </div>
   <style>
   .table4 {

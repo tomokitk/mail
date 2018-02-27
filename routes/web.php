@@ -21,3 +21,4 @@ Route::get('/search','SearchController@search');
 //refresh メソッドを呼ぶ
 Route::get('/refresh','RefreshController@refresh');
 Route::post('/export','ExportController@export');
+Route::post('/import','ImportController@import');
