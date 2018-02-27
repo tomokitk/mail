@@ -12,26 +12,44 @@ class ExportController extends Controller
     public function export(Request $request){
     
         $users = Maillist::all()->toArray();
-        
-        $stream = fopen('php://output', 'w');
+        //php://outputだとrewind()、fseek()が使えずファイルポインタを先頭に戻せないのでphp://tempを使用。
+        $stream = fopen('php://temp', 'r+b');
         foreach ($users as $user) {
           fputcsv($stream, $user);
           
         }
        //$csv = stream_get_contents($stream);
         //fclose($stream);
-        
-        //ダウンロードするプログラム
-        $headers = array(
-            'Content-Type' =>'application/octet-stream',
-            'Content-Length' =>'.filesize($stream)',
-            'Content-Disposition' => 'attachment; filename=users.csv',
-        );
-    
-        //dd($stream);
+        rewind($stream);
+        $csv = str_replace(PHP_EOL, "\r\n", stream_get_contents($stream));
+        $csv = mb_convert_encoding($csv, 'SJIS-win', 'UTF-8');
+            
+        $filename = 'test.csv';
+        $headers = [
+        'Content-Type' => 'text/csv',
+        'Content-Disposition' => 'attachment; filename="' . $filename . '"'
+        ];
+        return Response::make($csv, 200, $headers);
 
-        return Response::make($stream,200,$headers);
-        //download($stream,200,$headers);    
+
+
+
+
+
+
+
+        //rewide($stream);
+        //ダウンロードするプログラム
+        // $headers = array(
+        //     'Content-Type' =>'text/csv',
+        //     //'Content-Length' =>'.filesize($stream)',
+        //     'Content-Disposition' => 'attachment; filename="users.csv"',
+        // );
+    
+        // //dd($csv);
+
+        // return Response::make($stream,200,$headers);
+        // //download($stream,200,$headers);    
     
     }
     //header('Content-Type:text/csv');
