@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Maillist;
+use App\Import;
 
 class MaillistController extends Controller
 {
     public function maillist(Request $request){
         
-        $mail = Maillist::all();
-        $mail = Maillist::paginate(5);
+        $mail = Import::all();
+        $mail = Import::paginate(5);
        
         //dd($mail);
         return view('maillist')->with('imports',$mail);

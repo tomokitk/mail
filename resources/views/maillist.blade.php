@@ -26,7 +26,24 @@
 <form method="post" action="{{url('/export')}}" >
     {{ csrf_field() }}
     <input type="submit"  value="csv export">
-
+    <input type="hidden"  value="{$keyword}">
+    <input type="hidden"  value="{$keyword2}">
+    <input type="hidden"  value="{$keyword3}">
+    <input type="hidden"  value="{$keyword4}">
+    <input type="hidden"  value="{$keyword5}">
+    <input type="hidden"  value="{$keyword6}">
+    <input type="hidden"  value="{$keyword7}">
+    <input type="hidden"  value="{$keyword8}">
+    <input type="hidden"  value="{$keyword9}">
+    <input type="hidden"  value="{$keyword10}">
+    <input type="hidden"  value="{$keyword11}">
+    <input type="hidden"  value="{$keyword12}">
+    <input type="hidden"  value="{$keyword13}">
+    <input type="hidden"  value="{$keyword14}">
+    <input type="hidden"  value="{$keyword15}">
+    <input type="hidden"  value="{$keyword16}">
+    <input type="hidden"  value="{$keyword17}">
+    <input type="hidden"  value="{$keyword18}">
 </form>
 <form class="form-inline" action="{{'/search'}}" >
     <div class="form-group">

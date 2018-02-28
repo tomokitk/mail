@@ -30,9 +30,14 @@ class ImportController extends Controller
         $file = $request->file('csv_file');
         //dd($file);
         
-    
-        $readers = Excel::load($file);
+        // $file = mb_convert_encoding(file_get_contents($file), 'UTF8', 'sjis-win');
+        //dd($file);      
+        // $readers = fopen($file,'');
+        
+        // $readers = mb_convert_encoding(file_get_contents($readers), 'UTF8', 'sjis-win');
+        
         //$readers = file_get_contents($file);
+        $readers = Excel::load($file);
         $rows =  $readers->toArray(); 
        
         // foreach ($n as $reader) {
@@ -50,18 +55,10 @@ class ImportController extends Controller
         
 
         foreach($rows as $row) {
-            // dd($row);
+            // $row = mb_convert_encoding(file_get_contents($row), "UTF8", 'sjis-win');
+            //dd($row);
             Import::create($row);
-// dd(Import::first());
-            // Import::create(array(
-            //     "company" => "abc",
-            //     // "positon" => false,
-            //     "e_mail" => "m_ishinuki@mit.to",
-            //     "tel" => "03-6892-3251",
-            //     "fax" => "03-6892-3256",
-            //     "url" => "http://www.mit.to",
-            //     "trade_day" => "2017/5/29",
-            // ));
+
         };
 
 
@@ -70,9 +67,12 @@ class ImportController extends Controller
             
         
 
-        $mail=Maillist::all();
-        $mail=Maillist::paginate(10);
-         return view("maillist")->with('imports',$mail);
+        // $mail=Import::all();
+        // $mail=Import::paginate(5);
+        return redirect()->action('MaillistController@maillist');
+        
+        
+        // return view("maillist")->with('imports',$mail);
 
 
         

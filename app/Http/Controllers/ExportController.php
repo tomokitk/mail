@@ -4,14 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Maillist;
+use App\Import;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\ServiceProvider;
 
 class ExportController extends Controller
 {
     public function export(Request $request){
-    
-        $users = Maillist::all()->toArray();
+        
+        $keyword = $request->all();
+
+        
+        $users = Import::all()->toArray();
         //php://outputだとrewind()、fseek()が使えずファイルポインタを先頭に戻せないのでphp://tempを使用。
         $stream = fopen('php://temp', 'r+b');
         foreach ($users as $user) {
