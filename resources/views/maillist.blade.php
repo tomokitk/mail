@@ -25,27 +25,120 @@
  
 <form method="post" action="{{url('/export')}}" >
     {{ csrf_field() }}
+    <!-- <nameでコントローラーに渡す。> -->
+    
     <input type="submit"  value="csv export">
-    <input type="hidden"  value="{$keyword}">
-    <input type="hidden"  value="{$keyword2}">
-    <input type="hidden"  value="{$keyword3}">
-    <input type="hidden"  value="{$keyword4}">
-    <input type="hidden"  value="{$keyword5}">
-    <input type="hidden"  value="{$keyword6}">
-    <input type="hidden"  value="{$keyword7}">
-    <input type="hidden"  value="{$keyword8}">
-    <input type="hidden"  value="{$keyword9}">
-    <input type="hidden"  value="{$keyword10}">
-    <input type="hidden"  value="{$keyword11}">
-    <input type="hidden"  value="{$keyword12}">
-    <input type="hidden"  value="{$keyword13}">
-    <input type="hidden"  value="{$keyword14}">
-    <input type="hidden"  value="{$keyword15}">
-    <input type="hidden"  value="{$keyword16}">
-    <input type="hidden"  value="{$keyword17}">
-    <input type="hidden"  value="{$keyword18}">
+    
+    @if(isset($keyword))
+    <input type="hidden" name="name" value="{{$keyword}}">
+    @else
+    <input type="hidden" name="name" value="" >
+    @endif
+
+    @if(isset($keyword2))
+    <input type="hidden" name="company" value="{{$keyword2}}">
+    @else
+    <input type="hidden" name="company" value="" >
+    @endif
+
+    @if(isset($keyword3))
+    <input type="hidden" name="department" value="{{$keyword3}}">
+    @else
+    <input type="hidden" name="department" value="" >
+    @endif
+
+    @if(isset($keyword4))
+    <input type="hidden" name="positon" value="{{$keyword4}}">
+    @else
+    <input type="hidden" name="positon" value="" >
+    @endif
+
+    @if(isset($keyword5))
+    <input type="hidden" name="e_mail" value="{{$keyword5}}">
+    @else
+    <input type="hidden" name="e_mail" value="" >
+    @endif
+
+    @if(isset($keyword6))
+    <input type="hidden" name="postcode" value="{{$keyword6}}">
+    @else
+    <input type="hidden" name="postcode" value="" >
+    @endif
+
+    @if(isset($keyword7))
+    <input type="hidden" name="adress" value="{{$keyword7}}">
+    @else
+    <input type="hidden" name="adress" value="" >
+    @endif
+
+    @if(isset($keyword8))
+    <input type="hidden" name="TEL" value="{{$keyword8}}">
+    @else
+    <input type="hidden" name="TEL" value="" >
+    @endif
+
+    @if(isset($keyword9))
+    <input type="hidden" name="TELdepartment" value="{{$keyword9}}">
+    @else
+    <input type="hidden" name="TELdepartment" value="" >
+    @endif
+
+    @if(isset($keyword10))
+    <input type="hidden" name="TELdirect" value="{{$keyword10}}">
+    @else
+    <input type="hidden" name="TELdirect" value="" >
+    @endif
+
+    @if(isset($keyword11))
+    <input type="hidden" name="FAX" value="{{$keyword11}}">
+    @else
+    <input type="hidden" name="FAX" value="" >
+    @endif
+
+    @if(isset($keyword12))
+    <input type="hidden" name="phonenumber" value="{{$keyword12}}">
+    @else
+    <input type="hidden" name="phonenumber" value="" >
+    @endif
+
+    @if(isset($keyword13))
+    <input type="hidden" name="URL"value="{{$keyword13}}">
+    @else
+    <input type="hidden" name="URL" value="" >
+    @endif
+
+    @if(isset($keyword14))
+    <input type="hidden" name="trade_day" value="{{$keyword14}}">
+    @else
+    <input type="hidden" name="trade_day" value="" >
+    @endif
+
+    @if(isset($keyword15))
+    <input type="hidden" name="eightfrinds_num" value="{{$keyword15}}">
+    @else
+    <input type="hidden" name="eightfrinds_num" value="" >
+    @endif
+
+    @if(isset($keyword16))
+    <input type="hidden" name="now_dating" value="{{$keyword16}}">
+    @else
+    <input type="hidden" name="now_dating" value="" >
+    @endif
+
+    @if(isset($keyword17))
+    <input type="hidden" name="question" value="{{$keyword17}}">
+    @else
+    <input type="hidden" name="question" value="" >
+    @endif
+
+    @if(isset($keyword18))
+    <input type="hidden" name="id" value="{{$keyword18}}">
+    @else
+    <input type="hidden" name="id" value="" >
+    @endif
 </form>
-<form class="form-inline" action="{{'/search'}}" >
+
+<form class="form-inline" action="{{('/search')}}" >
     <div class="form-group">
     @if(isset($keyword))
     <input type="text" name="keyword" value="{{$keyword}}" placeholder="名前を入力してください">
@@ -158,11 +251,10 @@
     <input type="text" name="keyword18" value="" placeholder="id">
     @endif
     </div>
-    <input type="submit" value="検索" class="btn btn-info">
-   
+    <input type="submit" value="検索" class="btn btn-info"> 
 </form>
 
-<form class="form-inline" action="{{'/refresh'}}" >
+<form class="form-inline" action="{{'/refresh'}}">
 <input type="submit" value="初期化">
 </form>
 </div>
@@ -179,19 +271,19 @@ padding-right: 15px;
 padding-left: 15px;
 }
  </style>
-<?php//$fileName ="名刺データ_寺尾.csv";$file = fopen($fileName,"r");
-?>
+
  <table class="table" border=1> 
   <tr><th></th><th>ID</th><th>会社名</th><th>部署名</th><th>役職名</th><th>氏名</th><th>E-MAIL</th><th>郵便番号</th><th>住所</th><th>TEL会社</th><th>TEL部門</th><th>TEL直通</th><th>FAX</th><th>携帯番号</th><th>URL</th><th>名刺交換日</th><th>Eightでつながっている人</th><th>再データ化中の名刺</th><th>'?'を含んだデータ</th><th>アクションキー</th></tr>
   @foreach($imports as $import) 
   <tr> 
-  <td></td><td>{{$import->id}}</td><td>{{$import->company}}</td><td>{{$import->department}}</td><td>{{$import->position}}</td><td>{{$import->name}}</td><td>{{$import->e_mail}}</td><td>{{$import->postcode}}</td><td>{{$import->adress}}</td><td>{{$import->TELcompany}}</td><td>{{$import->TELdepartment}}</td><td>{{$import->TELdirect}}</td><td>{{$import->FAX}}</td><td>{{$import->phonenumber}}</td><td>{{$import->URL}}</td><td>{{$import->trade_day}}</td><td>{{$import->eightfrinds_num}}</td><td>{{$import->now_dating}}</td><td>{{$import->question}}</td><td>delete/save</td>
+  <td></td><td>{{$import->id}}</td><td>{{$import->company}}</td><td>{{$import->department}}</td><td>{{$import->positon}}</td><td>{{$import->name}}</td><td>{{$import->e_mail}}</td><td>{{$import->postcode}}</td><td>{{$import->adress}}</td><td>{{$import->TEL}}</td><td>{{$import->TELdepartment}}</td><td>{{$import->TELdirect}}</td><td>{{$import->FAX}}</td><td>{{$import->phonenumber}}</td><td>{{$import->URL}}</td><td>{{$import->trade_day}}</td><td>{{$import->eightfrinds_num}}</td><td>{{$import->now_dating}}</td><td>{{$import->question}}</td><td>delete/save</td>
   </tr>
   @endforeach
   <?php //ページ以外のgetからのリクエストをURLに引き継ぐ ?>
-  {{$imports->appends(Request::except("page"))->links() }}
+  
   
 </table>
 
 </body>
 </html>
+

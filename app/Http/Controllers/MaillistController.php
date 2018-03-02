@@ -11,7 +11,7 @@ class MaillistController extends Controller
     public function maillist(Request $request){
         
         $mail = Import::all();
-        $mail = Import::paginate(5);
+        
        
         //dd($mail);
         return view('maillist')->with('imports',$mail);

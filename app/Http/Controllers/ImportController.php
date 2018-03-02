@@ -65,11 +65,15 @@ class ImportController extends Controller
 
 
             
-        
+        $mail = Import::all();
+        $mail = Import::paginate(5);
+       
+        //dd($mail);
+        return view('maillist')->with('imports',$mail);
 
         // $mail=Import::all();
         // $mail=Import::paginate(5);
-        return redirect()->action('MaillistController@maillist');
+        //return redirect()->action('MaillistController@maillist');
         
         
         // return view("maillist")->with('imports',$mail);
