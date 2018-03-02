@@ -22,3 +22,4 @@ Route::get('/search','SearchController@search');
 Route::get('/refresh','RefreshController@refresh');
 Route::post('/export','ExportController@export');
 Route::post('/import','ImportController@import');
+Route::post('/delete','DeleteController@delete');

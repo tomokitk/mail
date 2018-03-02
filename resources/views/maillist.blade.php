@@ -1,6 +1,55 @@
 <!DOCTYPE html>
 <html lang="ja">
+<style>
+      #modal-content{
+        width:50%;
+        margin:1.5em auto 0;
+        padding:10px 20px;
+        border:2px solid #aaa;
+        background:#fff;
+        z-index:2;
+        position:fixed;
+      }
+
+      .modal-p{
+        margin-top:1em;
+      }
+
+      .modal-p:first-child{
+        margin-top:0;
+      }
+
+      .button-link{
+        color:#00f;
+        text-decoration:underline;
+      }
+      
+      .button-link:hover{
+        cursor:pointer;
+        color:#f00;
+      }
+      #modal-overlay{
+        z-index:1;
+        display:none;
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:120%;
+        top:0;
+        left:0;
+        background-color:rgba(0,0,0,0.75);
+      }
+
+      
+
+</style>
+
+
+
 <head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/test.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
@@ -10,7 +59,18 @@
 
 
 </head>
+<p><a id="modal-open"</a></p>
+
 <body>
+<div id="modal-content">
+	<p>「閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。</p>
+	<p><a id="modal-close" class="button-link">閉じる</a></p>
+</div>
+<div id="modal-overlay"></div>
+
+
+
+
     <h1>管理者画面</h1>
  <form method="post" action="{{url('/import')}}" enctype="multipart/form-data"> 
     {{ csrf_field() }}
@@ -272,12 +332,26 @@ padding-left: 15px;
 }
  </style>
 
+
  <table class="table" border=1> 
   <tr><th></th><th>ID</th><th>会社名</th><th>部署名</th><th>役職名</th><th>氏名</th><th>E-MAIL</th><th>郵便番号</th><th>住所</th><th>TEL会社</th><th>TEL部門</th><th>TEL直通</th><th>FAX</th><th>携帯番号</th><th>URL</th><th>名刺交換日</th><th>Eightでつながっている人</th><th>再データ化中の名刺</th><th>'?'を含んだデータ</th><th>アクションキー</th></tr>
   @foreach($imports as $import) 
+  <form method=post action="{{'/delete'}}">
+
+  {{ csrf_field() }}
   <tr> 
-  <td></td><td>{{$import->id}}</td><td>{{$import->company}}</td><td>{{$import->department}}</td><td>{{$import->positon}}</td><td>{{$import->name}}</td><td>{{$import->e_mail}}</td><td>{{$import->postcode}}</td><td>{{$import->adress}}</td><td>{{$import->TEL}}</td><td>{{$import->TELdepartment}}</td><td>{{$import->TELdirect}}</td><td>{{$import->FAX}}</td><td>{{$import->phonenumber}}</td><td>{{$import->URL}}</td><td>{{$import->trade_day}}</td><td>{{$import->eightfrinds_num}}</td><td>{{$import->now_dating}}</td><td>{{$import->question}}</td><td>delete/save</td>
+  <td></td><td>{{$import->id}}</td><td>{{$import->company}}</td><td>{{$import->department}}</td><td>{{$import->positon}}</td>
+  <td>{{$import->name}}</td><td>{{$import->e_mail}}</td><td>{{$import->postcode}}</td><td>{{$import->adress}}</td>
+  <td>{{$import->TEL}}</td><td>{{$import->TELdepartment}}</td><td>{{$import->TELdirect}}</td><td>{{$import->FAX}}</td>
+  <td>{{$import->phonenumber}}</td><td>{{$import->URL}}</td><td>{{$import->trade_day}}</td><td>{{$import->eightfrinds_num}}</td>
+  <td>{{$import->now_dating}}</td><td>{{$import->question}}</td>
+  <td>
+  <input name="URL" type="hidden" value="{{$import}}">
+  <input name="edit" type="submit" value="delete">
+  <input name="edit"  type="submit" value="edit"> 
+  </td>
   </tr>
+  </form>
   @endforeach
   <?php //ページ以外のgetからのリクエストをURLに引き継ぐ ?>
   
