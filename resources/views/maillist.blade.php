@@ -10,8 +10,7 @@
 
 
 <head>
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script type="text/javascript" src="js/test.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
@@ -22,14 +21,42 @@
 </head>
 <body>
   <!-- TODO:  dialog -->
-  <div id="open">
-    open me
-  </div>
-  <div id="mask" class="hidden"></div>
-  <div id="modal" class="hidden">
-    <p>hello i am tomoki</p>
-    <div id="close">
-      Close
+    <!-- <div id="open">
+      open me
+    </div>
+    <div id="mask" class="hidden"></div>
+    <div id="modal" class="hidden">
+      <p>hello i am tomoki</p>
+      <div id="close">
+        Close
+      </div>
+    </div> -->
+
+  <div class="dialog hidden">
+    <div id="mask" class=""></div>
+    <div id="modal" class="">
+      <p>hello i am tomoki</p>
+      <p>company<input name="index" class="company" type="text"></p>
+      <p>department<input name="index" class="department" type="text" value="department"></p>
+      <p>positon<input name="index" class="positon" type="text" value="positon"></p>
+      <p>name<input name="index" class="name" type="text" value="name"></p>
+      <p>e_mail<input name="index" class="e_mail" type="text" value="e_mail"></p>
+      <p>postcode<input name="index" class="postcode" type="text" value="postcode"></p>
+      <p>adress<input name="index" class="adress" type="text" value="adress"></p>
+      <p>TEL<input name="index" class="TEL" type="text" value="TEL"></p>
+      <p>TELdepartment<input name="index" class="TELdepartment" type="text" value="TELdepartment"></p>
+      <p>TELdirect<input name="index" class="TELdirect" type="text" value="TELdirect"></p>
+      <p>FAX<input name="index" class="FAX" type="text" value="FAX"></p>
+      <p>phonenumber<input name="index" class="phonenumber" type="text" value="phonenumber"></p>
+      <p>URL<input name="index" class="URL" type="text" value="URL"></p>
+      <p>trade_day<input name="index" class="trade_day" type="text" value="trade_day"></p>
+      <p>eightfrinds_num<input name="index" class="eightfrinds_num" type="text" value="eightfrinds_num"></p>
+      <p>now_dating<input name="index" class="now_dating" type="text" value="now_dating"></p>
+      <p>question<input name="index" class="question" type="text" value="question"></p>
+      <br>
+      <buton class="dialog_close">CLOSE</button>
+      <br>
+      <buton class="dialog_close">SUBMIT</button>
     </div>
   </div>
   <!-- END: dialog -->
@@ -323,22 +350,34 @@
       <th>アクションキー2</th>
     </tr>
 
-    @foreach($imports as $import) 
+    @foreach($imports as $import)
     <form method=post action="{{'/delete'}}">
       {{ csrf_field() }}
-      <tr> 
-        <td></td>
-        <td>{{$import->id}}</td><td>{{$import->company}}</td><td>{{$import->department}}</td><td>{{$import->positon}}</td>
-        <td>{{$import->name}}</td><td>{{$import->e_mail}}</td><td>{{$import->postcode}}</td><td>{{$import->adress}}</td>
-        <td>{{$import->TEL}}</td><td>{{$import->TELdepartment}}</td><td>{{$import->TELdirect}}</td><td>{{$import->FAX}}</td>
-        <td>{{$import->phonenumber}}</td><td>{{$import->URL}}</td><td>{{$import->trade_day}}</td><td>{{$import->eightfrinds_num}}</td>
-        <td>{{$import->now_dating}}</td><td>{{$import->question}}</td>
+      <tr class="row_{{$import->id}}">
+        <td class="id">{{$import->id}}</td>
+        <td class="company">{{$import->company}}</td>
+        <td class="department">{{$import->department}}</td>
+        <td class="positon">{{$import->positon}}</td>
+        <td class="name">{{$import->name}}</td>
+        <td class="e_mail">{{$import->e_mail}}</td>
+        <td class="postcode">{{$import->postcode}}</td>
+        <td class="adress">{{$import->adress}}</td>
+        <td class="TEL">{{$import->TEL}}</td>
+        <td class="TELdepartment">{{$import->TELdepartment}}</td>
+        <td class="TELdirect">{{$import->TELdirect}}</td>
+        <td class="FAX">{{$import->FAX}}</td>
+        <td class="phonenumber">{{$import->phonenumber}}</td>
+        <td class="URL">{{$import->URL}}</td>
+        <td class="trade_day">{{$import->trade_day}}</td>
+        <td class="eightfrinds_num">{{$import->eightfrinds_num}}</td>
+        <td class="now_dating">{{$import->now_dating}}</td>
+        <td class="question">{{$import->question}}</td>
         <td>
           <input name="URL" type="hidden" value="{{$import}}">
           <input name="edit" type="submit" value="delete">
         </td>
         <td>
-          <input name="edit" type="button" value="editss">
+          <input name="index" class="index index_{{$import->id}}" type="button" value="index">
         </td>
       </tr>
     </form>
@@ -347,5 +386,6 @@
     <?php //ページ以外のgetからのリクエストをURLに引き継ぐ ?>
   </table>
 </body>
+<script type="text/javascript" src="js/test.js"></script>
 </html>
 
