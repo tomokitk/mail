@@ -7,12 +7,13 @@
     var mask = document.getElementById("mask");
     const dialog = $('.dialog');
     const dialog_close = $('.dialog .dialog_close');
+    const dialog_submit = $('.dialog .dialog_submit');
 
     $('.index').click(function() {
         dialog.show();
         var rowClass = getRowFromClassName(event.target.className);
         var rowDOM = $(rowClass);
-        console.log(rowDOM.find('.e_mail')[0].textContent);
+        dialog.find ('input.id').val(rowDOM.find('.id')[0].textContent);;
         dialog.find ('input.company').val(rowDOM.find('.company')[0].textContent);;
         dialog.find ('input.department').val(rowDOM.find('.department')[0].textContent);
         dialog.find ('input.positon').val(rowDOM.find('.positon')[0].textContent);
@@ -47,6 +48,30 @@
 
     dialog_close.click(function() {
         dialog.hide();
+    });
+
+    dialog_submit.click(function() {
+        var value_id = dialog.find('.id').val();
+        var value_e_mail = dialog.find('input.e_mail').val();
+        $.ajax({
+            headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: '/update',
+            datatType : 'json',
+            type: 'POST',
+            data: {
+                'id': value_id,
+                'e_mail': value_e_mail
+            },
+            // cache: false,
+            // contentType: false,
+            // processData: false,
+
+            success:function(response) {
+                console.log(response);
+            }
+        });
     });
 
     open.addEventListener("click",function(){

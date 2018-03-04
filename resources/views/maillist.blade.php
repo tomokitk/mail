@@ -15,7 +15,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
   <meta charset="UTF-8">
-
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>input form</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -36,6 +36,7 @@
     <div id="mask" class=""></div>
     <div id="modal" class="">
       <p>hello i am tomoki</p>
+      <p>id<input name="index" class="id" type="text" disabled></p>
       <p>company<input name="index" class="company" type="text"></p>
       <p>department<input name="index" class="department" type="text" value="department"></p>
       <p>positon<input name="index" class="positon" type="text" value="positon"></p>
@@ -56,7 +57,7 @@
       <br>
       <buton class="dialog_close">CLOSE</button>
       <br>
-      <buton class="dialog_close">SUBMIT</button>
+      <buton class="dialog_submit">SUBMIT</button>
     </div>
   </div>
   <!-- END: dialog -->
