@@ -1,45 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <style>
-      #modal-content{
-        width:50%;
-        margin:1.5em auto 0;
-        padding:10px 20px;
-        border:2px solid #aaa;
-        background:#fff;
-        z-index:2;
-        position:fixed;
-      }
-
-      .modal-p{
-        margin-top:1em;
-      }
-
-      .modal-p:first-child{
-        margin-top:0;
-      }
-
-      .button-link{
-        color:#00f;
-        text-decoration:underline;
-      }
       
-      .button-link:hover{
-        cursor:pointer;
-        color:#f00;
-      }
-      #modal-overlay{
-        z-index:1;
-        display:none;
-        position:fixed;
-        top:0;
-        left:0;
-        width:100%;
-        height:120%;
-        top:0;
-        left:0;
-        background-color:rgba(0,0,0,0.75);
-      }
 
       
 
@@ -49,26 +11,32 @@
 
 <head>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="/js/test.js"></script>
+<script type="text/javascript" src="js/test.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
   <meta charset="UTF-8">
 
   <title>input form</title>
+<link rel="stylesheet" href="css/styles.css">
 
 
 </head>
-<p><a id="modal-open"</a></p>
+
+
 
 <body>
-<div id="modal-content">
-	<p>「閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。</p>
-	<p><a id="modal-close" class="button-link">閉じる</a></p>
+<div id="open">
+  open me
 </div>
-<div id="modal-overlay"></div>
-
-
+<div id="mask" class="hidden"></div>
+<div id="modal" class="hidden">
+  <p>hello i am tomoki</p>
+  <div id="close">
+    Close
+  </div>
+</div>
+<script type="text/javascript" src="js/test.js"></script>
 
 
     <h1>管理者画面</h1>
@@ -79,7 +47,7 @@
     <input type="submit" name="csv_file"  value="csv_import">     
 
  
-<div class="col-sm-4" style="padding:20px 0; padding-left:0px;">
+<div class="col-sm-4" style="padding:20px 0; padding-left:0px;"></div>
 </form>
 
  
@@ -334,7 +302,7 @@ padding-left: 15px;
 
 
  <table class="table" border=1> 
-  <tr><th></th><th>ID</th><th>会社名</th><th>部署名</th><th>役職名</th><th>氏名</th><th>E-MAIL</th><th>郵便番号</th><th>住所</th><th>TEL会社</th><th>TEL部門</th><th>TEL直通</th><th>FAX</th><th>携帯番号</th><th>URL</th><th>名刺交換日</th><th>Eightでつながっている人</th><th>再データ化中の名刺</th><th>'?'を含んだデータ</th><th>アクションキー</th></tr>
+  <tr><th></th><th>ID</th><th>会社名</th><th>部署名</th><th>役職名</th><th>氏名</th><th>E-MAIL</th><th>郵便番号</th><th>住所</th><th>TEL会社</th><th>TEL部門</th><th>TEL直通</th><th>FAX</th><th>携帯番号</th><th>URL</th><th>名刺交換日</th><th>Eightでつながっている人</th><th>再データ化中の名刺</th><th>'?'を含んだデータ</th><th>アクションキー</th><th>アクションキー2</th></tr>
   @foreach($imports as $import) 
   <form method=post action="{{'/delete'}}">
 
@@ -348,7 +316,9 @@ padding-left: 15px;
   <td>
   <input name="URL" type="hidden" value="{{$import}}">
   <input name="edit" type="submit" value="delete">
-  <input name="edit"  type="submit" value="edit"> 
+  </td>
+  <td>
+  <input name="edit" type="button" value="edit">
   </td>
   </tr>
   </form>
