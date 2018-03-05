@@ -24,3 +24,5 @@ Route::post('/export','ExportController@export');
 Route::post('/import','ImportController@import');
 Route::post('/delete','DeleteController@delete');
 Route::post('/update','IndexController@update');
+Route::get('/users','UsersController@users');
+
