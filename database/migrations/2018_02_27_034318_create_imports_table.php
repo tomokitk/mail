@@ -32,6 +32,7 @@ class CreateImportsTable extends Migration
             $table->string('eightfrinds_num');
             $table->string('now_dating');
             $table->string('question');
+            $table->string('flag');
             $table->timestamps();
         });
     }

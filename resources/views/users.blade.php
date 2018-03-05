@@ -9,4 +9,4 @@
 <p>以下に登録アドレスを記入してください</p>
 <form method="post" action="/users">
 <input name="e_mail" placeholder="メールアドレスを入力" type="text">
-<buttom name="user" type="submit" value="配信停止">
+<input name="user" type="submit" value="配信停止">
