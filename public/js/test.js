@@ -53,7 +53,23 @@
 
     dialog_submit.click(function() {
         var value_id = dialog.find('.id').val();
+        var value_company = dialog.find('input.company').val();
+        var value_department = dialog.find('input.department').val();
+        var value_positon = dialog.find('input.positon').val();
+        var value_name = dialog.find('input.name').val();
         var value_e_mail = dialog.find('input.e_mail').val();
+        var value_postcode = dialog.find('input.postcode').val();
+        var value_adress = dialog.find('input.adress').val();
+        var value_TEL = dialog.find('input.TEL').val();
+        var value_TELdepartment = dialog.find('input.TELdepartment').val();
+        var value_TELdirect = dialog.find('input.TELdirect').val();
+        var value_FAX = dialog.find('input.FAX').val();
+        var value_phonenumber = dialog.find('input.phonenumber').val();
+        var value_URL = dialog.find('input.URL').val();
+        var value_trade_day = dialog.find('input.trade_day').val();
+        var value_eightfrinds_num = dialog.find('input.eightfrinds_num').val();
+        var value_now_dating = dialog.find('input.now_dating').val();
+        var value_question = dialog.find('input.question').val();
         $.ajax({
             headers: {
                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -63,7 +79,24 @@
             type: 'POST',
             data: {
                 'id': value_id,
-                'e_mail': value_e_mail
+                'company':value_company,
+                'department': value_department,
+                'positon':value_positon,
+                'name':value_name,
+                'e_mail':value_e_mail,
+                'postcode':value_postcode,
+                'adress':value_adress,
+                'TEL':value_TEL,
+                'TELdepartment':value_TELdepartment,
+                'TELdirect':value_TELdirect,
+                'FAX':value_FAX,
+                'phonenumber':value_phonenumber,
+                'URL':value_URL,
+                'trade_day':value_trade_day,
+                'eightfrinds_num':value_eightfrinds_num,
+                'now_dating':value_now_dating,
+                'question':value_question,
+                
             },
             // cache: false,
             // contentType: false,
