@@ -328,7 +328,6 @@
 
   <table class="table" border=1>
     <tr>
-      <th></th>
       <th>ID</th>
       <th>会社名</th>
       <th>部署名</th>
@@ -374,7 +373,7 @@
         <td class="now_dating">{{$import->now_dating}}</td>
         <td class="question">{{$import->question}}</td>
         <td>
-          <input name="URL" type="hidden" value="{{$import}}">
+          <input name="id" type="hidden" value="{{$import->id}}">
           <input name="edit" type="submit" value="delete">
         </td>
         <td>

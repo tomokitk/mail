@@ -13,6 +13,7 @@
         dialog.show();
         var rowClass = getRowFromClassName(event.target.className);
         var rowDOM = $(rowClass);
+        console.log(rowDOM);
         dialog.find ('input.id').val(rowDOM.find('.id')[0].textContent);;
         dialog.find ('input.company').val(rowDOM.find('.company')[0].textContent);;
         dialog.find ('input.department').val(rowDOM.find('.department')[0].textContent);
