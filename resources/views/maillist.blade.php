@@ -329,7 +329,7 @@
   <form class="form-inline" action="{{'/refresh'}}">
     <input type="submit" value="初期化">
   </form>
-  <!-- suzuki </div> -->
+  <!--  </div> -->
 
   <style>
     .table4 {
@@ -339,11 +339,12 @@
     .table4 th, .table4 td {
     border: 1px solid gray;
     }
-      .col-md-4{
+    .col-md-4{
     padding-right: 15px;
     padding-left: 15px;
     }
   </style>
+
 
   <table class="table" border=1>
     <tr>
@@ -373,7 +374,11 @@
     @foreach($imports as $import)
     <form method=post action="{{'/delete'}}">
       {{ csrf_field() }}
-      <tr class="row_{{$import->id}}">
+      @if(isset($import->deleted_at))
+      <tr id = "coloring" class="row_{{$import->id}}">
+      @else
+      <tr id = "normal" class="row_{{$import->id}}">
+      @endif
         <td class="id">{{$import->id}}</td>
         <td class="company">{{$import->company}}</td>
         <td class="department">{{$import->department}}</td>

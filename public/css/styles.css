@@ -56,3 +56,15 @@ body{
   #modal.hidden {
     transform: translate(0, -500px);
   }
+
+  .table #coloring td{
+    background: #f0ec0a71;
+  }
+
+  .table #normal td{
+    background: #ffffff;
+  }
+
+  .table td{
+    border-width: 1px;
+  }

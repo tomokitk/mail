@@ -10,11 +10,9 @@ use App\Import;
 class UsersController extends Controller
 {
     public function users(Request $request){
-
-        return view('users');
+            return view('users');
     }
     //メール配信停止メソッド
-    
     public function stopmail(Request $request){
         $user_mail=$request->e_mail;
         $stops = Import::where("e_mail","=",$user_mail)->get();
@@ -25,27 +23,7 @@ class UsersController extends Controller
         }else{
             $errors_message="sorry we do not have your e_mail address";
             return view('users')->with('error_message',$errors_message);
-        }
-        
-        
-        // dd($stops);
-        // foreach($stops as $stop) {
-            
-        // $stop->delete();
-                //     // dd($stop->flag);
-        // $stops->save();
-        // }
-        
-        
+        } 
     }
-
-
-        // $ad=$request->all();
-        // dd($ad);
-        
-    
-
-
- 
 }
 
