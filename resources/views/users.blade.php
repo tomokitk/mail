@@ -11,6 +11,11 @@
     <input name="e_mail" placeholder="メールアドレスを入力" type="text">
     <input name="stopmail" type="submit" value="配信停止">
 </form>
+    @if(isset($error_message))
+    <P>{{$error_message}}<p>
+    @endif
+    
 
+     
 </body>
 </html>

@@ -11,13 +11,23 @@ class UsersController extends Controller
 {
     public function users(Request $request){
 
-        return view("users");
+        return view('users');
     }
-
     //メール配信停止メソッド
     
     public function stopmail(Request $request){
-        $stops = Import::where("e_mail","=",$request->e_mail)->delete();
+        $user_mail=$request->e_mail;
+        $stops = Import::where("e_mail","=",$user_mail)->get();
+        if(isset($stops)){
+            foreach($stops as $stop)
+            $stop->delete();
+            return view('users');
+        }else{
+            $errors_message="sorry we do not have your e_mail address";
+            return view('users')->with('error_message',$errors_message);
+        }
+        
+        
         // dd($stops);
         // foreach($stops as $stop) {
             
@@ -25,7 +35,7 @@ class UsersController extends Controller
                 //     // dd($stop->flag);
         // $stops->save();
         // }
-        return view('users');
+        
         
     }
 
