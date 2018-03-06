@@ -3,9 +3,20 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class CreateImportsTable extends Migration
 {
+    use SoftDeletes;
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
+    
     /**
      * Run the migrations.
      *
@@ -32,7 +43,7 @@ class CreateImportsTable extends Migration
             $table->string('eightfrinds_num');
             $table->string('now_dating');
             $table->string('question');
-            $table->string('flag');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

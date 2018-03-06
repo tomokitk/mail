@@ -9,7 +9,7 @@
     <p>以下に登録アドレスを記入してください</p>
 <form method="get" action="/stopmail">
     <input name="e_mail" placeholder="メールアドレスを入力" type="text">
-    <input name="user" type="submit" value="配信停止">
+    <input name="stopmail" type="submit" value="配信停止">
 </form>
 
 </body>

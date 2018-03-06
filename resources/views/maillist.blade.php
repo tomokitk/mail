@@ -190,9 +190,9 @@
     @endif
 
     @if(isset($keyword19))
-      <input type="hidden" name="flag" value="{{$keyword19}}">
+      <input type="hidden" name="deleted_at" value="{{$keyword19}}">
     @else
-      <input type="hidden" name="flag" value="" >
+      <input type="hidden" name="deleted_at" value="" >
     @endif
     
     
@@ -318,7 +318,7 @@
       @if(isset($keyword19))
         <input type="text" name="keyword19" value="{{$keyword19}}" placeholder="名前を入力してください">>
       @else
-        <input type="text" name="keyword19" value="" placeholder="配信禁止フラグ">
+        <input type="text" name="keyword19" value="" placeholder="配信停止日">
       @endif
     </div>
 
@@ -365,7 +365,7 @@
       <th>Eightでつながっている人</th>
       <th>再データ化中の名刺</th>
       <th>'?'を含んだデータ</th>
-      <th>配信禁止フラグ</th>
+      <th>配信禁止</th>
       <th>アクションキー</th>
       <th>アクションキー2</th>
     </tr>
@@ -392,7 +392,7 @@
         <td class="eightfrinds_num">{{$import->eightfrinds_num}}</td>
         <td class="now_dating">{{$import->now_dating}}</td>
         <td class="question">{{$import->question}}</td>
-        <td class="flag">{{$import->flag}}</td>
+        <td class="deleted_at">{{$import->deleted_at}}</td>
         <td>
           <input name="id" type="hidden" value="{{$import->id}}">
           <input name="edit" type="submit" value="delete">
