@@ -22,7 +22,7 @@ class CreateMaillistsTable extends Migration
             $table->string('e_mail');
             $table->integer('postcode');
             $table->string('adress');
-            $table->string('TELcompany');
+            $table->string('TEL');
             $table->string('TELdepartment');
             $table->string('TELdirect');
             $table->string('FAX');
