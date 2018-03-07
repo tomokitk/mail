@@ -34,7 +34,7 @@ class SearchController extends Controller
         }
         
         if(!empty($keyword)){
-        $query->where('positon','like','%'.$keyword['keyword4'].'%');
+        $query->where('position','like','%'.$keyword['keyword4'].'%');
         }
 
         if(!empty($keyword)){
@@ -46,7 +46,7 @@ class SearchController extends Controller
         }
         
         if(!empty($keyword)){
-        $query->where('adress','like','%'.$keyword['keyword7'].'%');
+        $query->where('address','like','%'.$keyword['keyword7'].'%');
         }
 
         if(!empty($keyword)){
@@ -78,7 +78,7 @@ class SearchController extends Controller
         }
         
         if(!empty($keyword)){
-        $query->where('eightfrinds_num','like','%'.$keyword['keyword15'].'%');
+        $query->where('eightfriends_num','like','%'.$keyword['keyword15'].'%');
         }
 
         if(!empty($keyword)){

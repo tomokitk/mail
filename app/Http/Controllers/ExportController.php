@@ -31,8 +31,8 @@ class ExportController extends Controller
             $query->where('department','like','%'.$keyword['department'].'%');
             }
             
-            if(!empty($keyword['positon'])){
-            $query->where('positon','like','%'.$keyword['positon'].'%');
+            if(!empty($keyword['position'])){
+            $query->where('position','like','%'.$keyword['position'].'%');
             }
     
             if(!empty($keyword['e_mail'])){
@@ -43,8 +43,8 @@ class ExportController extends Controller
             $query->where('postcode','like','%'.$keyword['postcode'].'%');
             }
             
-            if(!empty($keyword['adress'])){
-            $query->where('adress','like','%'.$keyword['adress'].'%');
+            if(!empty($keyword['address'])){
+            $query->where('address','like','%'.$keyword['address'].'%');
             }
     
             if(!empty($keyword['TEL'])){
@@ -75,8 +75,8 @@ class ExportController extends Controller
             $query->where('trade_day','like','%'.$keyword['trade_day'].'%');
             }
             
-            if(!empty($keyword['eightfrinds_num'])){
-            $query->where('eightfrinds_num','like','%'.$keyword['eightfrinds_num'].'%');
+            if(!empty($keyword['eightfriends_num'])){
+            $query->where('eightfriends_num','like','%'.$keyword['eightfriends_num'].'%');
             }
     
             if(!empty($keyword['now_dating'])){

@@ -65,8 +65,8 @@ class ImportController extends Controller
 
 
             
-        $mail = Import::all();
-        $mail = Import::paginate(5);
+        $mail = Import::withTrashed()->get();
+        // $mail = Import::paginate(5);
        
         //dd($mail);
         return view('maillist')->with('imports',$mail);

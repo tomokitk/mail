@@ -15,7 +15,7 @@ class UsersController extends Controller
     //メール配信停止メソッド
     public function stopmail(Request $request){
         $user_mail=$request->e_mail;
-        $stops = Import::where("e_mail","=",$user_mail)->get();
+        $stops = Import::where("e_mail","=",$user_mail)->get(); //get でも可（ただ、今回はそんなに重複のアドレスが多くないためfirst）
         if(isset($stops)){
             foreach($stops as $stop)
             $stop->delete();

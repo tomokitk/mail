@@ -39,11 +39,11 @@
       <p>id<input name="index" class="id" type="text" disabled></p>
       <p>company<input name="index" class="company" type="text"></p>
       <p>department<input name="index" class="department" type="text" value="department"></p>
-      <p>positon<input name="index" class="positon" type="text" value="positon"></p>
+      <p>positon<input name="index" class="position" type="text" value="positon"></p>
       <p>name<input name="index" class="name" type="text" value="name"></p>
       <p>e_mail<input name="index" class="e_mail" type="text" value="e_mail"></p>
       <p>postcode<input name="index" class="postcode" type="text" value="postcode"></p>
-      <p>adress<input name="index" class="adress" type="text" value="adress"></p>
+      <p>adress<input name="index" class="address" type="text" value="adress"></p>
       <p>TEL<input name="index" class="TEL" type="text" value="TEL"></p>
       <p>TELdepartment<input name="index" class="TELdepartment" type="text" value="TELdepartment"></p>
       <p>TELdirect<input name="index" class="TELdirect" type="text" value="TELdirect"></p>
@@ -51,7 +51,7 @@
       <p>phonenumber<input name="index" class="phonenumber" type="text" value="phonenumber"></p>
       <p>URL<input name="index" class="URL" type="text" value="URL"></p>
       <p>trade_day<input name="index" class="trade_day" type="text" value="trade_day"></p>
-      <p>eightfrinds_num<input name="index" class="eightfrinds_num" type="text" value="eightfrinds_num"></p>
+      <p>eightfrinds_num<input name="index" class="eightfriends_num" type="text" value="eightfrinds_num"></p>
       <p>now_dating<input name="index" class="now_dating" type="text" value="now_dating"></p>
       <p>question<input name="index" class="question" type="text" value="question"></p>
       <br>
@@ -100,9 +100,9 @@
     @endif
 
     @if(isset($keyword4))
-      <input type="hidden" name="positon" value="{{$keyword4}}">
+      <input type="hidden" name="position" value="{{$keyword4}}">
     @else
-      <input type="hidden" name="positon" value="" >
+      <input type="hidden" name="position" value="" >
     @endif
 
     @if(isset($keyword5))
@@ -118,9 +118,9 @@
     @endif
 
     @if(isset($keyword7))
-      <input type="hidden" name="adress" value="{{$keyword7}}">
+      <input type="hidden" name="address" value="{{$keyword7}}">
     @else
-      <input type="hidden" name="adress" value="" >
+      <input type="hidden" name="address" value="" >
     @endif
 
     @if(isset($keyword8))
@@ -166,9 +166,9 @@
     @endif
 
     @if(isset($keyword15))
-      <input type="hidden" name="eightfrinds_num" value="{{$keyword15}}">
+      <input type="hidden" name="eightfriends_num" value="{{$keyword15}}">
     @else
-      <input type="hidden" name="eightfrinds_num" value="" >
+      <input type="hidden" name="eightfriends_num" value="" >
     @endif
 
     @if(isset($keyword16))
@@ -382,11 +382,11 @@
         <td class="id">{{$import->id}}</td>
         <td class="company">{{$import->company}}</td>
         <td class="department">{{$import->department}}</td>
-        <td class="positon">{{$import->positon}}</td>
+        <td class="positon">{{$import->position}}</td>
         <td class="name">{{$import->name}}</td>
         <td class="e_mail">{{$import->e_mail}}</td>
         <td class="postcode">{{$import->postcode}}</td>
-        <td class="adress">{{$import->adress}}</td>
+        <td class="adress">{{$import->address}}</td>
         <td class="TEL">{{$import->TEL}}</td>
         <td class="TELdepartment">{{$import->TELdepartment}}</td>
         <td class="TELdirect">{{$import->TELdirect}}</td>
@@ -394,13 +394,17 @@
         <td class="phonenumber">{{$import->phonenumber}}</td>
         <td class="URL">{{$import->URL}}</td>
         <td class="trade_day">{{$import->trade_day}}</td>
-        <td class="eightfrinds_num">{{$import->eightfrinds_num}}</td>
+        <td class="eightfrinds_num">{{$import->eightfriends_num}}</td>
         <td class="now_dating">{{$import->now_dating}}</td>
         <td class="question">{{$import->question}}</td>
         <td class="deleted_at">{{$import->deleted_at}}</td>
         <td>
           <input name="id" type="hidden" value="{{$import->id}}">
+          @if(!isset($import->deleted_at))
           <input name="edit" type="submit" value="delete">
+          @else
+          <input name="edit" type="submit" value="delete" disabled>
+          @endif
         </td>
         <td>
           <input name="index" class="index index_{{$import->id}}" type="button" value="index">
