@@ -32,7 +32,7 @@
         dialog.find ('input.eightfriends_num').val(rowDOM.find('.eightfrinds_num')[0].textContent);
         dialog.find ('input.now_dating').val(rowDOM.find('.now_dating')[0].textContent);
         dialog.find ('input.question').val(rowDOM.find('.question')[0].textContent);
-        dialog.find ('input.deleted_at').val(rowDOM.find('.deleted_at')[0].textContent);
+        // dialog.find ('input.deleted_at').val(rowDOM.find('.deleted_at')[0].textContent);
     });
 
     /**
@@ -71,7 +71,7 @@
         var value_eightfriends_num = dialog.find('input.eightfriends_num').val();
         var value_now_dating = dialog.find('input.now_dating').val();
         var value_question = dialog.find('input.question').val();
-        var value_deleted_at = dialog.find('input.deleted_at').val();
+        // var value_deleted_at = dialog.find('input.deleted_at').val();
         $.ajax({
             headers: {
                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -98,7 +98,7 @@
                 'eightfriends_num':value_eightfriends_num,
                 'now_dating':value_now_dating,
                 'question':value_question,
-                'deleted_at':value_deleted_at,
+                // 'deleted_at':value_deleted_at,
                 
             },
             // cache: false,

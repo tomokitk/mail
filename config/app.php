@@ -148,7 +148,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         //Excelパッケージ利用
         Maatwebsite\Excel\ExcelServiceProvider::class,
-
+        Clockwork\Support\Laravel\ClockworkServiceProvider::class,
         /*
          * Package Service Providers...
          */

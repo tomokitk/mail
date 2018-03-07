@@ -65,7 +65,7 @@
  <a href="/users">メール配信停止</a> 
  {{ csrf_field() }}
   </div>
-
+  
   <script type="text/javascript" src="js/test.js"></script>
   <h1>管理者画面</h1>
   <form method="post" action="{{url('/import')}}" enctype="multipart/form-data">
@@ -382,11 +382,11 @@
         <td class="id">{{$import->id}}</td>
         <td class="company">{{$import->company}}</td>
         <td class="department">{{$import->department}}</td>
-        <td class="positon">{{$import->position}}</td>
+        <td class="position">{{$import->position}}</td>
         <td class="name">{{$import->name}}</td>
         <td class="e_mail">{{$import->e_mail}}</td>
         <td class="postcode">{{$import->postcode}}</td>
-        <td class="adress">{{$import->address}}</td>
+        <td class="address">{{$import->address}}</td>
         <td class="TEL">{{$import->TEL}}</td>
         <td class="TELdepartment">{{$import->TELdepartment}}</td>
         <td class="TELdirect">{{$import->TELdirect}}</td>
@@ -394,7 +394,7 @@
         <td class="phonenumber">{{$import->phonenumber}}</td>
         <td class="URL">{{$import->URL}}</td>
         <td class="trade_day">{{$import->trade_day}}</td>
-        <td class="eightfrinds_num">{{$import->eightfriends_num}}</td>
+        <td class="eightfriends_num">{{$import->eightfriends_num}}</td>
         <td class="now_dating">{{$import->now_dating}}</td>
         <td class="question">{{$import->question}}</td>
         <td class="deleted_at">{{$import->deleted_at}}</td>
@@ -407,13 +407,17 @@
           @endif
         </td>
         <td>
+          @if(!isset($import->deleted_at))
           <input name="index" class="index index_{{$import->id}}" type="button" value="index">
+          @else
+          <input name="index" class="index index_{{$import->id}}" type="button" value="index" disabled>
+          @endif
         </td>
       </tr>
     </form>
     @endforeach
-
-    <?php //ページ以外のgetからのリクエストをURLに引き継ぐ ?>
+   
+    
   </table>
 </body>
 <script type="text/javascript" src="js/test.js"></script>

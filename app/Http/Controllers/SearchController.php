@@ -20,7 +20,7 @@ class SearchController extends Controller
         #クエリ生成
         $query = Import::query();
         
-        
+        //  dd($keyword['keyword2']);
         #もしキーワードがあったら
         if(!empty($keyword)){
         $query->where('name','like','%'.$keyword['keyword'].'%');
@@ -94,7 +94,7 @@ class SearchController extends Controller
         }
 
         $mail = $query->get();
-        //$mail = $query->paginate(5);
+        // $mail = $query->paginate(5);
         
 
         //dd($mail);

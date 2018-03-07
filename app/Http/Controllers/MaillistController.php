@@ -11,7 +11,8 @@ class MaillistController extends Controller
 {
     public function maillist(Request $request){
         
-        $mail = Import::withTrashed()->get();
+        $mail = Import::withTrashed()->paginate(10);
+    
 
         
        

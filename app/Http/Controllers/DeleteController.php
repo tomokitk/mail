@@ -20,7 +20,7 @@ class DeleteController extends Controller
         // }elseif($request->edit=="edit"){
         // $update= new Import();
         // $update->onamae = $request->input('onamae');
-        $mail=Import::all();
+        $mail=Import::withTrashed()->get();
 
         return view('maillist')->with('imports',$mail);
 
