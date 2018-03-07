@@ -95,6 +95,8 @@ class ExportController extends Controller
             //  dd($users);
         //php://outputだとrewind()、fseek()が使えずファイルポインタを先頭に戻せないのでphp://tempを使用。
         $stream = fopen('php://temp', 'r+b');
+        $csvheader = ["id","会社名","部署名","役職名","氏名","メールアドレス","郵便番号","住所","TEL会社","TEL部門","TEL直通","FAX","携帯番号","URL","名刺交換","Eightでつながっている人","再データ化中の名刺","？を含んだデータ"];
+        fputcsv($stream,$csvheader);
         foreach ($users as $user){
           fputcsv($stream, $user);
           

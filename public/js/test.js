@@ -21,7 +21,7 @@
         dialog.find ('input.name').val(rowDOM.find('.name')[0].textContent);
         dialog.find ('input.e_mail').val(rowDOM.find('.e_mail')[0].textContent);
         dialog.find ('input.postcode').val(rowDOM.find('.postcode')[0].textContent);
-        dialog.find ('input.address').val(rowDOM.find('.adress')[0].textContent);
+        dialog.find ('input.address').val(rowDOM.find('.address')[0].textContent);
         dialog.find ('input.TEL').val(rowDOM.find('.TEL')[0].textContent);
         dialog.find ('input.TELdepartment').val(rowDOM.find('.TELdepartment')[0].textContent);
         dialog.find ('input.TELdirect').val(rowDOM.find('.TELdirect')[0].textContent);

@@ -20,40 +20,29 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <!-- TODO:  dialog -->
-    <!-- <div id="open">
-      open me
-    </div>
-    <div id="mask" class="hidden"></div>
-    <div id="modal" class="hidden">
-      <p>hello i am tomoki</p>
-      <div id="close">
-        Close
-      </div>
-    </div> -->
-
+   
   <div class="dialog hidden">
     <div id="mask" class=""></div>
     <div id="modal" class="">
       <p>hello i am tomoki</p>
       <p>id<input name="index" class="id" type="text" disabled></p>
       <p>company<input name="index" class="company" type="text"></p>
-      <p>department<input name="index" class="department" type="text" value="department"></p>
-      <p>positon<input name="index" class="position" type="text" value="positon"></p>
-      <p>name<input name="index" class="name" type="text" value="name"></p>
-      <p>e_mail<input name="index" class="e_mail" type="text" value="e_mail"></p>
-      <p>postcode<input name="index" class="postcode" type="text" value="postcode"></p>
-      <p>adress<input name="index" class="address" type="text" value="adress"></p>
-      <p>TEL<input name="index" class="TEL" type="text" value="TEL"></p>
-      <p>TELdepartment<input name="index" class="TELdepartment" type="text" value="TELdepartment"></p>
-      <p>TELdirect<input name="index" class="TELdirect" type="text" value="TELdirect"></p>
-      <p>FAX<input name="index" class="FAX" type="text" value="FAX"></p>
-      <p>phonenumber<input name="index" class="phonenumber" type="text" value="phonenumber"></p>
-      <p>URL<input name="index" class="URL" type="text" value="URL"></p>
-      <p>trade_day<input name="index" class="trade_day" type="text" value="trade_day"></p>
-      <p>eightfrinds_num<input name="index" class="eightfriends_num" type="text" value="eightfrinds_num"></p>
-      <p>now_dating<input name="index" class="now_dating" type="text" value="now_dating"></p>
-      <p>question<input name="index" class="question" type="text" value="question"></p>
+      <p>department<input name="index" class="department" type="text" value=""></p>
+      <p>positon<input name="index" class="position" type="text" value=""></p>
+      <p>name<input name="index" class="name" type="text" value=""></p>
+      <p>e_mail<input name="index" class="e_mail" type="text" value=""></p>
+      <p>postcode<input name="index" class="postcode" type="text" value=""></p>
+      <p>adress<input name="index" class="address" type="text" value=""></p>
+      <p>TEL<input name="index" class="TEL" type="text" value=""></p>
+      <p>TELdepartment<input name="index" class="TELdepartment" type="text" value=""></p>
+      <p>TELdirect<input name="index" class="TELdirect" type="text" value=""></p>
+      <p>FAX<input name="index" class="FAX" type="text" value=""></p>
+      <p>phonenumber<input name="index" class="phonenumber" type="text" value=""></p>
+      <p>URL<input name="index" class="URL" type="text" value=""></p>
+      <p>trade_day<input name="index" class="trade_day" type="text" value=""></p>
+      <p>eightfrinds_num<input name="index" class="eightfriends_num" type="text" value=""></p>
+      <p>now_dating<input name="index" class="now_dating" type="text" value=""></p>
+      <p>question<input name="index" class="question" type="text" value=""></p>
       <br>
       <buton class="dialog_close">CLOSE</button>
       <br>

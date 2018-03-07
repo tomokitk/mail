@@ -9,6 +9,12 @@ use App\users;
 
 class MaillistController extends Controller
 {
+//**メインページ（maillist）を呼ぶ
+ /* Undocumented function
+ *
+ * @param Request $request
+ * @return void
+ */
     public function maillist(Request $request){
         
         $mail = Import::withTrashed()->paginate(10);
