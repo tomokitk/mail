@@ -99,6 +99,7 @@ class SearchController extends Controller
 
         // dd("mail");
         return view('maillist')->with('imports',$mail)
+                                //一文判定処理
                                ->with('keyword',empty($keyword['name'])?"":$keyword['name'])
                                ->with('keyword2',empty($keyword['company'])?"":$keyword['company'])
                                ->with('keyword3',empty($keyword['department'])?"":$keyword['department'])
