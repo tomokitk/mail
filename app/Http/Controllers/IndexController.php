@@ -10,7 +10,6 @@ class IndexController extends Controller
 {
     public function  update(Request $request){
         $update = Import::where("id","=",$request->id)->first();
-        // log::debug($request->company);
         $update->company = $request->company;
         $update->department = $request->department;
         $update->position = $request->position;

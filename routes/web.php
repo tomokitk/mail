@@ -15,7 +15,7 @@ Route::get('/', 'MaillistController@maillist');
 
 
 //mallist メソッドを呼ぶ
-Route::get('/mailllist','MaillistController@maillist');
+Route::get('/maillist','MaillistController@maillist');
 //seach メソッドを呼ぶ
 Route::get('/search','SearchController@search');
 //refresh メソッドを呼ぶ
@@ -23,7 +23,7 @@ Route::get('/refresh','RefreshController@refresh');
 Route::post('/export','ExportController@export');
 Route::post('/import','ImportController@import');
 Route::post('/delete','DeleteController@delete');
-Route::post('/update','IndexController@update');
+Route::post('/update','IndexController@updaPte');
 Route::get('/users','UsersController@users');
 Route::get('/stopmail','UsersController@stopmail');
 
