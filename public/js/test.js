@@ -14,10 +14,10 @@
         var rowClass = getRowFromClassName(event.target.className);
         var rowDOM = $(rowClass);
         console.log(rowDOM);
-        dialog.find ('input.id').val(rowDOM.find('.id')[0].textContent);;
-        dialog.find ('input.company').val(rowDOM.find('.company')[0].textContent);;
+        dialog.find ('input.id').val(rowDOM.find('.id')[0].textContent);
+        dialog.find ('input.company').val(rowDOM.find('.company')[0].textContent);
         dialog.find ('input.department').val(rowDOM.find('.department')[0].textContent);
-        dialog.find ('input.position').val(rowDOM.find('.positon')[0].textContent);
+        dialog.find ('input.position').val(rowDOM.find('.position')[0].textContent);
         dialog.find ('input.name').val(rowDOM.find('.name')[0].textContent);
         dialog.find ('input.e_mail').val(rowDOM.find('.e_mail')[0].textContent);
         dialog.find ('input.postcode').val(rowDOM.find('.postcode')[0].textContent);
@@ -29,7 +29,7 @@
         dialog.find ('input.phonenumber').val(rowDOM.find('.phonenumber')[0].textContent);
         dialog.find ('input.URL').val(rowDOM.find('.URL')[0].textContent);
         dialog.find ('input.trade_day').val(rowDOM.find('.trade_day')[0].textContent);
-        dialog.find ('input.eightfriends_num').val(rowDOM.find('.eightfrinds_num')[0].textContent);
+        dialog.find ('input.eightfriends_num').val(rowDOM.find('.eightfriends_num')[0].textContent);
         dialog.find ('input.now_dating').val(rowDOM.find('.now_dating')[0].textContent);
         dialog.find ('input.question').val(rowDOM.find('.question')[0].textContent);
         // dialog.find ('input.deleted_at').val(rowDOM.find('.deleted_at')[0].textContent);

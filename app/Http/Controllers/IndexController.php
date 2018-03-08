@@ -9,6 +9,7 @@ use Log;
 class IndexController extends Controller
 {
     public function  update(Request $request){
+        // Log::debug($request);
         $update = Import::where("id","=",$request->id)->first();
         $update->company = $request->company;
         $update->department = $request->department;
@@ -29,8 +30,8 @@ class IndexController extends Controller
         $update->question = $request->question;
         $update->deleted_at = $request->deleted_at;
         $update->save();
-        $mail=Import::all();
-        return view("maillist")->with('imports',$mail);
+        // $mail=Import::all();
+        return redirect('/maillist');
     }
         
         

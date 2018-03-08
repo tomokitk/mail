@@ -28,11 +28,11 @@
       <p>id<input name="index" class="id" type="text" disabled></p>
       <p>company<input name="index" class="company" type="text"></p>
       <p>department<input name="index" class="department" type="text" value=""></p>
-      <p>positon<input name="index" class="position" type="text" value=""></p>
+      <p>position<input name="index" class="position" type="text" value=""></p>
       <p>name<input name="index" class="name" type="text" value=""></p>
       <p>e_mail<input name="index" class="e_mail" type="text" value=""></p>
       <p>postcode<input name="index" class="postcode" type="text" value=""></p>
-      <p>adress<input name="index" class="address" type="text" value=""></p>
+      <p>address<input name="index" class="address" type="text" value=""></p>
       <p>TEL<input name="index" class="TEL" type="text" value=""></p>
       <p>TELdepartment<input name="index" class="TELdepartment" type="text" value=""></p>
       <p>TELdirect<input name="index" class="TELdirect" type="text" value=""></p>
