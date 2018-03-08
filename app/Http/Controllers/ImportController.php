@@ -41,10 +41,11 @@ class ImportController extends Controller
                         $getdata ->TELdirect=$row[9],
                         $getdata ->FAX=$row[10],
                         $getdata ->phonenumber=$row[11],
-                        $getdata ->trade_day=$row[12],
-                        $getdata ->eightfriends_num=$row[13],
-                        $getdata ->now_dating=$row[14],
-                        $getdata ->question=$row[15],
+                        $getdata ->URL=$row[12],
+                        $getdata ->trade_day=$row[13],
+                        $getdata ->eightfriends_num=$row[14],
+                        $getdata ->now_dating=$row[15],
+                        $getdata ->question=$row[16],
                                    );
                         $getdata->save();
                 }
