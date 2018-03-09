@@ -12,8 +12,6 @@
 */
 
 Route::get('/', 'MaillistController@maillist');
-
-
 //mallist メソッドを呼ぶ
 Route::get('/maillist','MaillistController@maillist');
 //seach メソッドを呼ぶ

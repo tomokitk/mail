@@ -44,6 +44,11 @@ body{
     transition: 0,7s;
     z-index: 2;
   }
+
+  #modal.validate {
+    border : 2px;
+    background: rgb(143, 14, 14);
+  }
   
   #modal p {
     line-height: 1.5;

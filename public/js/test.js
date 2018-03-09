@@ -128,5 +128,9 @@
         mask.className="hidden";
        
     });
-
+    
 })();  
+
+(document).ready(function(){
+    $(".index").validationEngine();
+   });

@@ -10,10 +10,13 @@
 
 
 <head>
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="css/validationEngine.jquery.css">
+  <script src="js/jquery.validationEngine-ja.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
   <meta charset="UTF-8">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>input form</title>
@@ -24,13 +27,13 @@
   <div class="dialog hidden">
     <div id="mask" class=""></div>
     <div id="modal" class="">
-      <p>hello i am tomoki</p>
+      <form id = "validationForm">
       <p>id<input name="index" class="id" type="text" disabled></p>
-      <p>company<input name="index" class="company" type="text"></p>
+      <p>company<input name="index" class="company" type="text" data-validation-engine="validate[required]"></p>
       <p>department<input name="index" class="department" type="text" value=""></p>
       <p>position<input name="index" class="position" type="text" value=""></p>
       <p>name<input name="index" class="name" type="text" value=""></p>
-      <p>e_mail<input name="index" class="e_mail" type="text" value=""></p>
+      <p>e_mail<input name="index" class="e_mail" type="text" value=""  data-validation-engine="validate[required, custom[email], maxSize[80]]"></p>
       <p>postcode<input name="index" class="postcode" type="text" value=""></p>
       <p>address<input name="index" class="address" type="text" value=""></p>
       <p>TEL<input name="index" class="TEL" type="text" value=""></p>
@@ -47,6 +50,7 @@
       <buton class="dialog_close">CLOSE</button>
       <br>
       <buton class="dialog_submit">SUBMIT</button>
+    </form> 
     </div>
   </div>
   <!-- END: dialog -->
@@ -401,5 +405,7 @@
   </table>
 </body>
 <script type="text/javascript" src="js/test.js"></script>
+<script src="js/email.js" type="text/javascript" charset="utf-8"></script>
+
 </html>
 
