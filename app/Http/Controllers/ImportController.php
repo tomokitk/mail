@@ -22,6 +22,19 @@ class ImportController extends Controller
             $csv[] = $data;
         }
         fclose($temp);
+        
+        //to do
+        //where 以降でflag を建てて１ループ目で止める。
+        foreach($csv as $row){
+            $a=array($row);
+                //dd($row[4]);
+                if($b=Import::where('e_mail',"=",$row[4])->get()){
+                    // dd("ggg");
+                    break;
+                }
+                echo "重複してます";
+            }
+        
         //一回目は真
         $firstFlag=true;
         foreach($csv as $row){

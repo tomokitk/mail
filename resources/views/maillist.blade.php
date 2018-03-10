@@ -34,21 +34,22 @@
       <p>position<input name="index" class="position" type="text" value=""></p>
       <p>name<input name="index" class="name" type="text" value=""></p>
       <p>e_mail<input name="index" class="e_mail" type="text" value=""  data-validation-engine="validate[required, custom[email], maxSize[80]]"></p>
-      <p>postcode<input name="index" class="postcode" type="text" value=""></p>
+      <p>postcode<input name="index" class="postcode" type="text" value="" data-validation-engine="validate[custom[number]]"></p>
       <p>address<input name="index" class="address" type="text" value=""></p>
-      <p>TEL<input name="index" class="TEL" type="text" value=""></p>
-      <p>TELdepartment<input name="index" class="TELdepartment" type="text" value=""></p>
-      <p>TELdirect<input name="index" class="TELdirect" type="text" value=""></p>
-      <p>FAX<input name="index" class="FAX" type="text" value=""></p>
-      <p>phonenumber<input name="index" class="phonenumber" type="text" value=""></p>
-      <p>URL<input name="index" class="URL" type="text" value=""></p>
-      <p>trade_day<input name="index" class="trade_day" type="text" value=""></p>
-      <p>eightfrinds_num<input name="index" class="eightfriends_num" type="text" value=""></p>
+      <p>TEL<input name="index" class="TEL" type="text" value="" data-validation-engine="validate[custom[phone]"></p>
+      <p>TELdepartment<input name="index" class="TELdepartment" type="text" value="" data-validation-engine="validate[custom[phone]"></p>
+      <p>TELdirect<input name="index" class="TELdirect" type="text" value="" data-validation-engine="validate[custom[phone]"></p>
+      <p>FAX<input name="index" class="FAX" type="text" value="" data-validation-engine="validate[custom[phone]"></p>
+      <p>phonenumber<input name="index" class="phonenumber" type="text" value="" data-validation-engine="validate[custom[phone]"></p>
+      <p>URL<input name="index" class="URL" type="text" value=""  data-validation-engine="validate[custom[url]]"></p>
+      <p>trade_day<input name="index" class="trade_day" type="text" value="" data-validation-engine="validate[custom[date]"></p>
+      <p>eightfrinds_num<input name="index" class="eightfriends_num" type="text" value="" data-validation-engine="validate[custom[number]]"></p>
       <p>now_dating<input name="index" class="now_dating" type="text" value=""></p>
       <p>question<input name="index" class="question" type="text" value=""></p>
       <br>
       <buton class="dialog_close">CLOSE</button>
       <br>
+        {{--  todo  disabled  --}}
       <buton class="dialog_submit">SUBMIT</button>
     </form> 
     </div>
