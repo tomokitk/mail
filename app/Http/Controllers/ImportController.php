@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use App\Import;
 use App\Maillist;
 use Excel;
@@ -48,7 +49,15 @@ class ImportController extends Controller
                     $question=$row[16],
                     );
             }else if($validationFlag==false){
-            return redirect('/maillist');
+                $errors_message="重複があります";
+                // $mail=Import::all();
+                $mail=Import::all();
+                // dd($getValidationData->e_mail);
+                return view('maillist')->with('alert',$errors_message)
+                                        ->with('imports',$mail)
+                                        ->with('errorRecord',$getValidationData->e_mail);
+                
+                // return view('maillist')->with('error_message',$errors_message  //                        ->with('imports',$mail);
             }
                 if($getValidationData = Import::where("e_mail","=",$row[4])->first()){
                     $validationFlag=false; 
@@ -93,13 +102,3 @@ class ImportController extends Controller
 
 }
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        

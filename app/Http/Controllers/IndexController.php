@@ -13,6 +13,15 @@ class IndexController extends Controller
         $this->validate($request,[
             'e_mail' => 'required',
             'e_mail' => 'email',
+            'postcode' =>'number',
+            'TEl' =>'phone',
+            'TELdepartment' =>'phone',
+            'TELdirect' =>'phone',
+            'FAX' =>'phone',
+            'phonenumber' =>'phone',
+            'URL' => 'URL',
+            'trade_day' => 'date',
+            'eightfrinds_num' => 'number',
         ]); 
         $update = Import::where("id","=",$request->id)->first();
         $update->company = $request->company;

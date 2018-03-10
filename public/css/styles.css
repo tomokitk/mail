@@ -8,8 +8,17 @@ body{
     display: none;
 }
 
-.dialog .dialig_close {
+.dialog .dialog_close {
     border: 1px solid #0c0c0c;
+    background: rgba(2, 248, 104, 0.808);
+    cursor: pointer;
+    width: 100px;
+}
+.dialog .dialog_submit{
+    border: 1px solid #0c0c0c;
+    background: rgba(0, 121, 151, 0.808);
+    cursor: pointer;
+    width: 100px;
 }
 
 #open, #close {
@@ -72,4 +81,5 @@ body{
 
   .table td{
     border-width: 1px;
+    width: auto;
   }

@@ -23,13 +23,25 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+     
+    @if(isset($alert))
+    <script>
+      function getValue($alert){
+        // value値を取得する
+       var result = document.getElementById($alert).value;
+ 
+        alert(result);
+      }
+    </script>
+    {{--  <P>{{$error_message}}<p>  --}}
+    @endif     
    
   <div class="dialog hidden">
     <div id="mask" class=""></div>
     <div id="modal" class="">
       <form id = "validationForm">
       <p>id<input name="index" class="id" type="text" disabled></p>
-      <p>company<input name="index" class="company" type="text" data-validation-engine="validate[required]"></p>
+      <p>company<input name="index" class="company" type="text" ></p>
       <p>department<input name="index" class="department" type="text" value=""></p>
       <p>position<input name="index" class="position" type="text" value=""></p>
       <p>name<input name="index" class="name" type="text" value=""></p>
@@ -47,10 +59,10 @@
       <p>now_dating<input name="index" class="now_dating" type="text" value=""></p>
       <p>question<input name="index" class="question" type="text" value=""></p>
       <br>
-      <buton class="dialog_close">CLOSE</button>
+      <button class="dialog_close">CLOSE</button>
       <br>
         {{--  todo  disabled  --}}
-      <buton class="dialog_submit">SUBMIT</button>
+      <button class="dialog_submit">SUBMIT</button>
     </form> 
     </div>
   </div>
@@ -63,7 +75,7 @@
   <h1>管理者画面</h1>
   <form method="post" action="{{url('/import')}}" enctype="multipart/form-data">
     {{ csrf_field() }}
-    <p>ファイルの選択</p>
+    <p>ファイルを選択してください</p>
     <input type="file" name="csv_file" id="inputFile" >
     <input type="submit" name="csv_file"  value="csv_import">
     <div class="col-sm-4" style="padding:20px 0; padding-left:0px;"></div>
@@ -181,9 +193,6 @@
     @else
       <input type="hidden" name="id" value="" >
     @endif
-
-
-    
   </form>
 
 
@@ -401,7 +410,7 @@
     </form>
     @endforeach
    
-    {{$imports->appends(Request::except("page"))->links() }}
+    {{--  {{$imports->appends(Request::except("page"))->links() }}  --}}
   </table>
 </body>
 <script type="text/javascript" src="js/test.js"></script>
