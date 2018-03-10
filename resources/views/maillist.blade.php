@@ -59,7 +59,6 @@
  <a href="/users">メール配信停止</a> 
  {{ csrf_field() }}
   </div>
-  
   <script type="text/javascript" src="js/test.js"></script>
   <h1>管理者画面</h1>
   <form method="post" action="{{url('/import')}}" enctype="multipart/form-data">
