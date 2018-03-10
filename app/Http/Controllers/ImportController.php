@@ -28,7 +28,7 @@ class ImportController extends Controller
         $validationFlag=true;
         foreach($csv as $row){
             if($validationFlag==true){
-                $a=array(
+                $getValidationData=array(
                     $company=$row[0],
                     $department=$row[1],
                     $position=$row[2],
@@ -50,7 +50,7 @@ class ImportController extends Controller
             }else if($validationFlag==false){
             return redirect('/maillist');
             }
-                if($a = Import::where("e_mail","=",$row[4])->first()){
+                if($getValidationData = Import::where("e_mail","=",$row[4])->first()){
                     $validationFlag=false; 
                 }
            
