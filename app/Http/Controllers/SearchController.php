@@ -8,98 +8,105 @@ use App\Import;
 
 class SearchController extends Controller
 {
-    public function search(Request $request){
-
-        #キーワード受け取り
-        $keyword = $request->all();
-        
-        //dd($keyword);
-        // $a = $request->path();
-        // logger($a);
-        
+    public function search(Request $request)
+    {
+        $keyword = $request->all();    
         #クエリ生成
         $query = Import::query();
-        //  dd($keyword['keyword2']);
         #もしキーワードがあったら
-        if(!empty($keyword['name'])){
+        if(!empty($keyword['name']))
+        {
         $query->where('name','like','%'.$keyword['name'].'%');
         }
         
-        if(!empty($keyword['company'])){
+        if(!empty($keyword['company']))
+        {
         $query->where('company','like','%'.$keyword['company'].'%');
         }
         
-        if(!empty($keyword['kdepartment'])){
+        if(!empty($keyword['kdepartment']))
+        {
         $query->where('department','like','%'.$keyword['department'].'%');
         }
         
-        if(!empty($keyword['position'])){
+        if(!empty($keyword['position']))
+        {
         $query->where('position','like','%'.$keyword['position'].'%');
         }
 
-        if(!empty($keyword['e_mail'])){
+        if(!empty($keyword['e_mail']))
+        {
         $query->where('e_mail','like','%'.$keyword['e_mail'].'%');
         }
 
-        if(!empty($keyword['postcode'])){
+        if(!empty($keyword['postcode']))
+        {
         $query->where('postcode','like','%'.$keyword['postcode'].'%');
         }
         
-        if(!empty($keyword['address'])){
+        if(!empty($keyword['address']))
+        {
         $query->where('address','like','%'.$keyword['address'].'%');
         }
 
-        if(!empty($keyword['TEL'])){
+        if(!empty($keyword['TEL']))
+        {
         $query->where('TEL','like','%'.$keyword['TEL'].'%');
         }
 
-        if(!empty($keyword['TELdepartment'])){
+        if(!empty($keyword['TELdepartment']))
+        {
         $query->where('TELdepartment','like','%'.$keyword['TELdepartment'].'%');
         }
 
-        if(!empty($keyword['TELdirect'])){
+        if(!empty($keyword['TELdirect']))
+        {
         $query->where('TELdirect','like','%'.$keyword['TELdirect'].'%');
         }
 
-        if(!empty($keyword['FAX'])){
+        if(!empty($keyword['FAX']))
+        {
         $query->where('FAX','like','%'.$keyword['FAX'].'%');
         }
 
-        if(!empty($keyword['phonenumber'])){
+        if(!empty($keyword['phonenumber']))
+        {
         $query->where('phonenumber','like','%'.$keyword['phonenumber'].'%');
         }
 
-        if(!empty($keyword['URL'])){
+        if(!empty($keyword['URL']))
+        {
         $query->where('URL','like','%'.$keyword['URL'].'%');
         }
 
-        if(!empty($keyword['trade_day'])){
+        if(!empty($keyword['trade_day']))
+        {
         $query->where('trade_day','like','%'.$keyword['trade_day'].'%');
         }
         
-        if(!empty($keyword['eightfriends_num'])){
+        if(!empty($keyword['eightfriends_num']))
+        {
         $query->where('eightfriends_num','like','%'.$keyword['eightfriends_num'].'%');
         }
 
-        if(!empty($keyword['now_dating'])){
+        if(!empty($keyword['now_dating']))
+        {
         $query->where('now_dating','like','%'.$keyword['now_dating'].'%');
         }
 
-        if(!empty($keyword['question'])){
+        if(!empty($keyword['question']))
+        {
         $query->where('question','like','%'.$keyword['question'].'%');
         }
 
-        if(!empty($keyword['id'])){
+        if(!empty($keyword['id']))
+        {
         $query->where('id','like','%'.$keyword['id'].'%');
         }
 
         $mail = $query->get();
         $mail = $query->paginate(5);
-        
-
-        // dd("mail");
         return view('maillist')->with('imports',$mail)
-                                //一文判定処理
                                ->with('keyword',empty($keyword['name'])?"":$keyword['name'])
                                ->with('keyword2',empty($keyword['company'])?"":$keyword['company'])
                                ->with('keyword3',empty($keyword['department'])?"":$keyword['department'])

@@ -23,18 +23,32 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-     
+    {{--  @if(session('alert'))
+    @endif
     @if(isset($alert))
     <script>
-      function getValue($alert){
-        // value値を取得する
-       var result = document.getElementById($alert).value;
+      // function getValue($alert){
+      //   // value値を取得する
+      //  var result = document.getElementById($alert).value;
  
-        alert(result);
+        alert('ほげ');
       }
     </script>
-    {{--  <P>{{$error_message}}<p>  --}}
-    @endif     
+    {{  <P>{{$error_message}}<p>  --}}
+    
+  @if (session('status'))
+    <div class="container mt-2">
+      <div class="alert alert-success">
+      {{ session('status')}}が重複しています。読み込みたいcsvファイルから削除したのち、再度読み込んでください。
+      </div>
+    </div>
+  @elseif (session('seccessMessage'))
+    <div class="container mt-2">
+      <div class="alert alert-success">
+      {{ session('seccessMessage')}}
+      </div>
+    </div>
+  @endif
    
   <div class="dialog hidden">
     <div id="mask" class=""></div>
@@ -48,13 +62,13 @@
       <p>e_mail<input name="index" class="e_mail" type="text" value=""  data-validation-engine="validate[required, custom[email], maxSize[80]]"></p>
       <p>postcode<input name="index" class="postcode" type="text" value="" data-validation-engine="validate[custom[number]]"></p>
       <p>address<input name="index" class="address" type="text" value=""></p>
-      <p>TEL<input name="index" class="TEL" type="text" value="" data-validation-engine="validate[custom[phone]"></p>
-      <p>TELdepartment<input name="index" class="TELdepartment" type="text" value="" data-validation-engine="validate[custom[phone]"></p>
-      <p>TELdirect<input name="index" class="TELdirect" type="text" value="" data-validation-engine="validate[custom[phone]"></p>
-      <p>FAX<input name="index" class="FAX" type="text" value="" data-validation-engine="validate[custom[phone]"></p>
-      <p>phonenumber<input name="index" class="phonenumber" type="text" value="" data-validation-engine="validate[custom[phone]"></p>
+      <p>TEL<input name="index" class="TEL" type="text" value="" data-validation-engine="validate[custom[phone]]"></p>
+      <p>TELdepartment<input name="index" class="TELdepartment" type="text" value="" data-validation-engine="validate[custom[phone]]"></p>
+      <p>TELdirect<input name="index" class="TELdirect" type="text" value="" data-validation-engine="validate[custom[phone]]"></p>
+      <p>FAX<input name="index" class="FAX" type="text" value="" data-validation-engine="validate[custom[phone]]"></p>
+      <p>phonenumber<input name="index" class="phonenumber" type="text" value="" data-validation-engine="validate[custom[phone]]"></p>
       <p>URL<input name="index" class="URL" type="text" value=""  data-validation-engine="validate[custom[url]]"></p>
-      <p>trade_day<input name="index" class="trade_day" type="text" value="" data-validation-engine="validate[custom[date]"></p>
+      <p>trade_day<input name="index" class="trade_day" type="text" value="" data-validation-engine="validate[custom[date]]"></p>
       <p>eightfrinds_num<input name="index" class="eightfriends_num" type="text" value="" data-validation-engine="validate[custom[number]]"></p>
       <p>now_dating<input name="index" class="now_dating" type="text" value=""></p>
       <p>question<input name="index" class="question" type="text" value=""></p>
@@ -410,7 +424,7 @@
     </form>
     @endforeach
    
-    {{--  {{$imports->appends(Request::except("page"))->links() }}  --}}
+    {{$imports->appends(Request::except("page"))->links() }}
   </table>
 </body>
 <script type="text/javascript" src="js/test.js"></script>

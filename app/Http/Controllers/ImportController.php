@@ -51,11 +51,13 @@ class ImportController extends Controller
             }else if($validationFlag==false){
                 $errors_message="重複があります";
                 // $mail=Import::all();
-                $mail=Import::all();
+                // $mail=Import::all();
+
+                return redirect('/maillist')->with('status',$getValidationData->e_mail);
                 // dd($getValidationData->e_mail);
-                return view('maillist')->with('alert',$errors_message)
-                                        ->with('imports',$mail)
-                                        ->with('errorRecord',$getValidationData->e_mail);
+                // return view('maillist')->with('alert',$errors_message)
+                //                         ->with('imports',$mail)
+                //                         ->with('errorRecord',$getValidationData->e_mail);
                 
                 // return view('maillist')->with('error_message',$errors_message  //                        ->with('imports',$mail);
             }
@@ -95,8 +97,8 @@ class ImportController extends Controller
         //ここで偽になる
         $firstFlag=false;
             }
-        $mail = Import::withTrashed()->paginate(10);
-        return redirect('/maillist');
+       $seccessMessage="読み込み完了しました";
+        return redirect('/maillist')->with('seccessMessage',$seccessMessage);
     }         
 
 

@@ -15,24 +15,12 @@ class MaillistController extends Controller
  * @param Request $request
  * @return void
  */
-    public function maillist(Request $request){
-        
+    public function maillist(Request $request)
+    {
         $mail = Import::withTrashed()->paginate(10);
-    
-
-        
-       
-        //dd($mail);
         return view('maillist')->with('imports',$mail);
-                                // ->with('keyword',$keyword)
-                                // ->with('keyword2',$keyword2);
- }
+    }                            
 
 }    
 
-        #ページネーション
-        // $data = $query->orderBy('created_at','desc')->paginate(10);
-        // return view('crud.index')->with('data',$data)
-        // ->with('keyword',$keyword)
-        // ->with('message','ユーザーリスト');
-    
+       

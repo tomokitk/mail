@@ -9,11 +9,17 @@ use App\Import;
 
 class UsersController extends Controller
 {
-    public function users(Request $request){
+    public function users(Request $request)
+    {
             return view('users');
     }
     //メール配信停止メソッド
-    public function stopmail(Request $request){
+    public function stopmail(Request $request)
+    {
+        $this->validate($request,[
+            'e_mail' => 'required',
+            'e_mail' => 'email',
+            ]); 
         $user_mail=$request->e_mail;
         $stops = Import::where("e_mail","=",$user_mail)->first(); //get でも可（ただ、今回はそんなに重複のアドレスが多くないためfirst）
         if(isset($stops)){
