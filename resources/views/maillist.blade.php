@@ -23,22 +23,17 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    {{--  @if(session('alert'))
+    @if(session('warning_messages'))
+    <div class="container mt-2">
+        <div class="alert alert-danger">
+    {{session('warning_messages')}}
+        </div>
+      </div>
     @endif
-    @if(isset($alert))
-    <script>
-      // function getValue($alert){
-      //   // value値を取得する
-      //  var result = document.getElementById($alert).value;
- 
-        alert('ほげ');
-      }
-    </script>
-    {{  <P>{{$error_message}}<p>  --}}
-    
+
   @if (session('status'))
     <div class="container mt-2">
-      <div class="alert alert-success">
+      <div class="alert alert-danger">
       {{ session('status')}}が重複しています。読み込みたいcsvファイルから削除したのち、再度読み込んでください。
       </div>
     </div>
@@ -59,14 +54,14 @@
       <p>department<input name="index" class="department" type="text" value=""></p>
       <p>position<input name="index" class="position" type="text" value=""></p>
       <p>name<input name="index" class="name" type="text" value=""></p>
-      <p>e_mail<input name="index" class="e_mail" type="text" value=""  data-validation-engine="validate[required, custom[email], maxSize[80]]"></p>
-      <p>postcode<input name="index" class="postcode" type="text" value="" data-validation-engine="validate[custom[number]]"></p>
+      <p>e_mail<input name="index" class="e_mail" type="text" value="" data-validation-engine="validate[required, custom[email], maxSize[80]]" ></p>
+      <p>postcode<input name="index" class="postcode" type="text" value="" data-validation-engine="validate[custom[postcode]]"></p>
       <p>address<input name="index" class="address" type="text" value=""></p>
       <p>TEL<input name="index" class="TEL" type="text" value="" data-validation-engine="validate[custom[phone]]"></p>
       <p>TELdepartment<input name="index" class="TELdepartment" type="text" value="" data-validation-engine="validate[custom[phone]]"></p>
       <p>TELdirect<input name="index" class="TELdirect" type="text" value="" data-validation-engine="validate[custom[phone]]"></p>
       <p>FAX<input name="index" class="FAX" type="text" value="" data-validation-engine="validate[custom[phone]]"></p>
-      <p>phonenumber<input name="index" class="phonenumber" type="text" value="" data-validation-engine="validate[custom[phone]]"></p>
+      <p>phonenumber<input name="index" class="phonenumber" type="text" value="" data-validation-engine="validate[custom[phoneNumber]]"></p>
       <p>URL<input name="index" class="URL" type="text" value=""  data-validation-engine="validate[custom[url]]"></p>
       <p>trade_day<input name="index" class="trade_day" type="text" value="" data-validation-engine="validate[custom[date]]"></p>
       <p>eightfrinds_num<input name="index" class="eightfriends_num" type="text" value="" data-validation-engine="validate[custom[number]]"></p>

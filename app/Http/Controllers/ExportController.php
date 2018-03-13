@@ -7,7 +7,7 @@ use App\Maillist;
 use App\Import;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\ServiceProvider;
-
+use log;
 class ExportController extends Controller
 {
     public function export(Request $request)
@@ -109,19 +109,23 @@ class ExportController extends Controller
         foreach ($users as $user){
           fputcsv($stream, $user);
         }
+        
         rewind($stream);
         
         $csv = str_replace(PHP_EOL, "\r\n", stream_get_contents($stream));
         $csv = mb_convert_encoding($csv, 'SJIS-win', 'UTF-8');
+        // Log::debug($csv);
         $filename = 'test.csv';
         $headers = [
         'Content-Type' => 'text/csv',
         'Content-Disposition' => 'attachment; filename="' . $filename . '"'
+        
         ];
-    }
-}   
-          return Response::make($csv, 200, $headers);
-                                                    
+    
+  
+    return Response::make($csv,200, $headers);
+    }  
+}
 
       
         
