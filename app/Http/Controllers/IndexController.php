@@ -15,6 +15,7 @@ class IndexController extends Controller
    
     public function update(Request $request)
     {
+        
         $update = Import::where("id","=",$request->id)->first();
         $update->company = $request->company;
         $update->department = $request->department;

@@ -23,10 +23,6 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-
-    
-    
-
     @if(session('warning_messages'))
     <div class="container mt-2">
         <div class="alert alert-danger">
