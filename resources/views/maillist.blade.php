@@ -10,63 +10,81 @@
 
 
 <head>
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="css/validationEngine.jquery.css">
+  <script src="js/jquery.validationEngine-ja.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
   <meta charset="UTF-8">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>input form</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <!-- TODO:  dialog -->
-    <!-- <div id="open">
-      open me
-    </div>
-    <div id="mask" class="hidden"></div>
-    <div id="modal" class="hidden">
-      <p>hello i am tomoki</p>
-      <div id="close">
-        Close
+    @if(session('warning_messages'))
+    <div class="container mt-2">
+        <div class="alert alert-danger">
+    {{session('warning_messages')}}
+        </div>
       </div>
-    </div> -->
+    @endif
 
+  @if (session('status'))
+    <div class="container mt-2">
+      <div class="alert alert-danger">
+      {{ session('status')}}が重複しています。読み込みたいcsvファイルから削除したのち、再度読み込んでください。
+      </div>
+    </div>
+  @elseif (session('seccessMessage'))
+    <div class="container mt-2">
+      <div class="alert alert-success">
+      {{ session('seccessMessage')}}
+      </div>
+    </div>
+  @endif
+   
   <div class="dialog hidden">
     <div id="mask" class=""></div>
     <div id="modal" class="">
-      <p>hello i am tomoki</p>
+      <form id = "validationForm">
       <p>id<input name="index" class="id" type="text" disabled></p>
-      <p>company<input name="index" class="company" type="text"></p>
-      <p>department<input name="index" class="department" type="text" value="department"></p>
-      <p>positon<input name="index" class="positon" type="text" value="positon"></p>
-      <p>name<input name="index" class="name" type="text" value="name"></p>
-      <p>e_mail<input name="index" class="e_mail" type="text" value="e_mail"></p>
-      <p>postcode<input name="index" class="postcode" type="text" value="postcode"></p>
-      <p>adress<input name="index" class="adress" type="text" value="adress"></p>
-      <p>TEL<input name="index" class="TEL" type="text" value="TEL"></p>
-      <p>TELdepartment<input name="index" class="TELdepartment" type="text" value="TELdepartment"></p>
-      <p>TELdirect<input name="index" class="TELdirect" type="text" value="TELdirect"></p>
-      <p>FAX<input name="index" class="FAX" type="text" value="FAX"></p>
-      <p>phonenumber<input name="index" class="phonenumber" type="text" value="phonenumber"></p>
-      <p>URL<input name="index" class="URL" type="text" value="URL"></p>
-      <p>trade_day<input name="index" class="trade_day" type="text" value="trade_day"></p>
-      <p>eightfrinds_num<input name="index" class="eightfrinds_num" type="text" value="eightfrinds_num"></p>
-      <p>now_dating<input name="index" class="now_dating" type="text" value="now_dating"></p>
-      <p>question<input name="index" class="question" type="text" value="question"></p>
+      <p>company<input name="index" class="company" type="text" ></p>
+      <p>department<input name="index" class="department" type="text" value=""></p>
+      <p>position<input name="index" class="position" type="text" value=""></p>
+      <p>name<input name="index" class="name" type="text" value=""></p>
+      <p>e_mail<input name="index" class="e_mail" type="text" value="" data-validation-engine="validate[required, custom[email], maxSize[80]]" ></p>
+      <p>postcode<input name="index" class="postcode" type="text" value="" data-validation-engine="validate[custom[postcode]]"></p>
+      <p>address<input name="index" class="address" type="text" value=""></p>
+      <p>TEL<input name="index" class="TEL" type="text" value="" data-validation-engine="validate[custom[phone]]"></p>
+      <p>TELdepartment<input name="index" class="TELdepartment" type="text" value="" data-validation-engine="validate[custom[phone]]"></p>
+      <p>TELdirect<input name="index" class="TELdirect" type="text" value="" data-validation-engine="validate[custom[phone]]"></p>
+      <p>FAX<input name="index" class="FAX" type="text" value="" data-validation-engine="validate[custom[phone]]"></p>
+      <p>phonenumber<input name="index" class="phonenumber" type="text" value="" data-validation-engine="validate[custom[phoneNumber]]"></p>
+      <p>URL<input name="index" class="URL" type="text" value=""  data-validation-engine="validate[custom[url]]"></p>
+      <p>trade_day<input name="index" class="trade_day" type="text" value="" data-validation-engine="validate[custom[date]]"></p>
+      <p>eightfrinds_num<input name="index" class="eightfriends_num" type="text" value="" data-validation-engine="validate[custom[number]]"></p>
+      <p>now_dating<input name="index" class="now_dating" type="text" value=""></p>
+      <p>question<input name="index" class="question" type="text" value=""></p>
       <br>
-      <buton class="dialog_close">CLOSE</button>
+      <button class="dialog_close">CLOSE</button>
       <br>
-      <buton class="dialog_submit">SUBMIT</button>
+        {{--  todo  disabled  --}}
+      <button class="dialog_submit">SUBMIT</button>
+    </form> 
     </div>
   </div>
   <!-- END: dialog -->
-
+  <div class="users">
+ <a href="/users">メール配信停止</a> 
+ {{ csrf_field() }}
+  </div>
   <script type="text/javascript" src="js/test.js"></script>
   <h1>管理者画面</h1>
   <form method="post" action="{{url('/import')}}" enctype="multipart/form-data">
     {{ csrf_field() }}
-    <p>ファイルの選択</p>
+    <p>ファイルを選択してください</p>
     <input type="file" name="csv_file" id="inputFile" >
     <input type="submit" name="csv_file"  value="csv_import">
     <div class="col-sm-4" style="padding:20px 0; padding-left:0px;"></div>
@@ -96,9 +114,9 @@
     @endif
 
     @if(isset($keyword4))
-      <input type="hidden" name="positon" value="{{$keyword4}}">
+      <input type="hidden" name="position" value="{{$keyword4}}">
     @else
-      <input type="hidden" name="positon" value="" >
+      <input type="hidden" name="position" value="" >
     @endif
 
     @if(isset($keyword5))
@@ -114,9 +132,9 @@
     @endif
 
     @if(isset($keyword7))
-      <input type="hidden" name="adress" value="{{$keyword7}}">
+      <input type="hidden" name="address" value="{{$keyword7}}">
     @else
-      <input type="hidden" name="adress" value="" >
+      <input type="hidden" name="address" value="" >
     @endif
 
     @if(isset($keyword8))
@@ -162,9 +180,9 @@
     @endif
 
     @if(isset($keyword15))
-      <input type="hidden" name="eightfrinds_num" value="{{$keyword15}}">
+      <input type="hidden" name="eightfriends_num" value="{{$keyword15}}">
     @else
-      <input type="hidden" name="eightfrinds_num" value="" >
+      <input type="hidden" name="eightfriends_num" value="" >
     @endif
 
     @if(isset($keyword16))
@@ -186,121 +204,124 @@
     @endif
   </form>
 
+
   <form class="form-inline" action="{{('/search')}}" >
     <div class="form-group">
       @if(isset($keyword))
-        <input type="text" name="keyword" value="{{$keyword}}" placeholder="名前を入力してください">
+        <input type="text" name="name" value="{{$keyword}}" placeholder="名前">
       @else
-        <input type="text" name="keyword" value="" placeholder="名前">
+        <input type="text" name="name" value="" placeholder="名前">
       @endif
 
       @if(isset($keyword2))
-        <input type="text" name="keyword2" value="{{$keyword2}}" placeholder="名前を入力してください">
+        <input type="text" name="company" value="{{$keyword2}}" placeholder="会社名">
       @else
-        <input type="text" name="keyword2" value="" placeholder="会社名">
+        <input type="text" name="company" value="" placeholder="会社名">
       @endif
 
       @if(isset($keyword3))
-          <input type="text" name="keyword3" value="{{$keyword3}}" placeholder="名前を入力してください">
+          <input type="text" name="department" value="{{$keyword3}}" placeholder="部門">
       @else
-        <input type="text" name="keyword3" value="" placeholder="部門">
+        <input type="text" name="department" value="" placeholder="部門">
       @endif
         
       @if(isset($keyword4))
-        <input type="text" name="keyword4" value="{{$keyword4}}" placeholder="名前を入力してください">
+        <input type="text" name="position" value="{{$keyword4}}" placeholder="役職名">
       @else
-        <input type="text" name="keyword4" value="" placeholder="役職名">
+        <input type="text" name="position" value="" placeholder="役職名">
       @endif
         
       @if(isset($keyword5))
-        <input type="text" name="keyword5" value="{{$keyword5}}" placeholder="名前を入力してください">
+        <input type="text" name="e_mail" value="{{$keyword5}}" placeholder="メールアドレス">
       @else
-        <input type="text" name="keyword5" value="" placeholder="メールアドレス">
+        <input type="text" name="e_mail" value="" placeholder="メールアドレス">
       @endif
     </div>
 
     <div class="form-group">
       @if(isset($keyword6))
-        <input type="text" name="keyword6" value="{{$keyword6}}" placeholder="名前を入力してください">
+        <input type="text" name="postcode" value="{{$keyword6}}" placeholder="郵便番号">
       @else
-        <input type="text" name="keyword6" value="" placeholder="郵便番号">
+        <input type="text" name="postcode" value="" placeholder="郵便番号">
       @endif
       
       @if(isset($keyword7))
-        <input type="text" name="keyword7" value="{{$keyword7}}" placeholder="名前を入力してください">
+        <input type="text" name="address" value="{{$keyword7}}" placeholder="住所">
       @else
-      <input type="text" name="keyword7" value="" placeholder="住所">
+      <input type="text" name="address" value="" placeholder="住所">
       @endif
 
       @if(isset($keyword8))
-        <input type="text" name="keyword8" value="{{$keyword8}}" placeholder="名前を入力してください">
+        <input type="text" name="TEL" value="{{$keyword8}}" placeholder="TEL会社">
       @else
-        <input type="text" name="keyword8" value="" placeholder="TEL会社">
+        <input type="text" name="TEL" value="" placeholder="TEL会社">
       @endif
 
       @if(isset($keyword9))
-        <input type="text" name="keyword9" value="{{$keyword9}}" placeholder="名前を入力してください">
+        <input type="text" name="TELdepartment" value="{{$keyword9}}" placeholder="TEL部門">
       @else
-        <input type="text" name="keyword9" value="" placeholder="TEL部門">
+        <input type="text" name="TELdepartment" value="" placeholder="TEL部門">
       @endif
       
       @if(isset($keyword10))
-        <input type="text" name="keyword10" value="{{$keyword10}}" placeholder="名前を入力してください">
+        <input type="text" name="TELdirect" value="{{$keyword10}}" placeholder="TEL直通">
       @else
-        <input type="text" name="keyword10" value="" placeholder="TEL直通">
+        <input type="text" name="TELdirect" value="" placeholder="TEL直通">
       @endif
     </div>
 
     <div class="form-group">
       @if(isset($keyword11))
-        <input type="text" name="keyword11" value="{{$keyword11}}" placeholder="名前を入力してください">
+        <input type="text" name="FAX" value="{{$keyword11}}" placeholder="FAX">
       @else
-        <input type="text" name="keyword11" value="" placeholder="FAX">
+        <input type="text" name="FAX" value="" placeholder="FAX">
       @endif
 
       @if(isset($keyword12))
-        <input type="text" name="keyword12" value="{{$keyword12}}" placeholder="名前を入力してください">
+        <input type="text" name="phonenumber" value="{{$keyword12}}" placeholder="郵便番号">
       @else
-        <input type="text" name="keyword12" value="" placeholder="携帯番号">
+        <input type="text" name="phonenumber" value="" placeholder="携帯番号">
       @endif
 
       @if(isset($keyword13))
-        <input type="text" name="keyword13" value="{{$keyword13}}" placeholder="名前を入力してください">
+        <input type="text" name="URL" value="{{$keyword13}}" placeholder="URL">
       @else
-        <input type="text" name="keyword13" value="" placeholder="URL">
+        <input type="text" name="URL" value="" placeholder="URL">
       @endif
 
       @if(isset($keyword14))
-        <input type="text" name="keyword14" value="{{$keyword14}}" placeholder="名前を入力してください">
+        <input type="text" name="trade_day" value="{{$keyword14}}" placeholder="名刺交換日">
       @else
-        <input type="text" name="keyword14" value="" placeholder="名刺交換日">
+        <input type="text" name="trade_day" value="" placeholder="名刺交換日">
       @endif
       
       @if(isset($keyword15))
-        <input type="text" name="keyword15" value="{{$keyword15}}" placeholder="名前を入力してください">
+        <input type="text" name="eightfriends_num" value="{{$keyword15}}" placeholder="Eightでつながっている人数">
       @else
-        <input type="text" name="keyword15" value="" placeholder="Eightでつながっている人数">
+        <input type="text" name="eightfriends_num" value="" placeholder="Eightでつながっている人数">
       @endif
     </div>
 
     <div class="form-group">
       @if(isset($keyword16))
-        <input type="text" name="keyword16" value="{{$keyword16}}" placeholder="名前を入力してください">
+        <input type="text" name="now_dating" value="{{$keyword16}}" placeholder="再データ化中の名刺">
       @else
-        <input type="text" name="keyword16" value="" placeholder="再データ化中の名刺">
+        <input type="text" name="now_dating" value="" placeholder="再データ化中の名刺">
       @endif
 
       @if(isset($keyword17))
-        <input type="text" name="keyword17" value="{{$keyword17}}" placeholder="名前を入力してください">
+        <input type="text" name="question" value="{{$keyword17}}" placeholder="'?'を含んだデータ">
       @else
-        <input type="text" name="keyword17" value="" placeholder="'?'を含んだデータ">
+        <input type="text" name="question" value="" placeholder="'?'を含んだデータ">
       @endif
 
       @if(isset($keyword18))
-        <input type="text" name="keyword18" value="{{$keyword18}}" placeholder="名前を入力してください">
+        <input type="text" name="id" value="{{$keyword18}}" placeholder="id">
       @else
-        <input type="text" name="keyword18" value="" placeholder="id">
+        <input type="text" name="id" value="" placeholder="id">
       @endif
+
+     
     </div>
 
     <input type="submit" value="検索" class="btn btn-info"> 
@@ -310,7 +331,7 @@
   <form class="form-inline" action="{{'/refresh'}}">
     <input type="submit" value="初期化">
   </form>
-  <!-- suzuki </div> -->
+  <!--  </div> -->
 
   <style>
     .table4 {
@@ -320,11 +341,12 @@
     .table4 th, .table4 td {
     border: 1px solid gray;
     }
-      .col-md-4{
+    .col-md-4{
     padding-right: 15px;
     padding-left: 15px;
     }
   </style>
+
 
   <table class="table" border=1>
     <tr>
@@ -346,6 +368,7 @@
       <th>Eightでつながっている人</th>
       <th>再データ化中の名刺</th>
       <th>'?'を含んだデータ</th>
+      <th>配信禁止</th>
       <th>アクションキー</th>
       <th>アクションキー2</th>
     </tr>
@@ -353,15 +376,19 @@
     @foreach($imports as $import)
     <form method=post action="{{'/delete'}}">
       {{ csrf_field() }}
-      <tr class="row_{{$import->id}}">
+      @if(isset($import->deleted_at))
+      <tr id = "coloring" class="row_{{$import->id}}">
+      @else
+      <tr id = "normal" class="row_{{$import->id}}">
+      @endif
         <td class="id">{{$import->id}}</td>
         <td class="company">{{$import->company}}</td>
         <td class="department">{{$import->department}}</td>
-        <td class="positon">{{$import->positon}}</td>
+        <td class="position">{{$import->position}}</td>
         <td class="name">{{$import->name}}</td>
         <td class="e_mail">{{$import->e_mail}}</td>
         <td class="postcode">{{$import->postcode}}</td>
-        <td class="adress">{{$import->adress}}</td>
+        <td class="address">{{$import->address}}</td>
         <td class="TEL">{{$import->TEL}}</td>
         <td class="TELdepartment">{{$import->TELdepartment}}</td>
         <td class="TELdirect">{{$import->TELdirect}}</td>
@@ -369,23 +396,34 @@
         <td class="phonenumber">{{$import->phonenumber}}</td>
         <td class="URL">{{$import->URL}}</td>
         <td class="trade_day">{{$import->trade_day}}</td>
-        <td class="eightfrinds_num">{{$import->eightfrinds_num}}</td>
+        <td class="eightfriends_num">{{$import->eightfriends_num}}</td>
         <td class="now_dating">{{$import->now_dating}}</td>
         <td class="question">{{$import->question}}</td>
+        <td class="deleted_at">{{$import->deleted_at}}</td>
         <td>
           <input name="id" type="hidden" value="{{$import->id}}">
+          @if(!isset($import->deleted_at))
           <input name="edit" type="submit" value="delete">
+          @else
+          <input name="edit" type="submit" value="delete" disabled>
+          @endif
         </td>
         <td>
+          @if(!isset($import->deleted_at))
           <input name="index" class="index index_{{$import->id}}" type="button" value="index">
+          @else
+          <input name="index" class="index index_{{$import->id}}" type="button" value="index" disabled>
+          @endif
         </td>
       </tr>
     </form>
     @endforeach
-
-    <?php //ページ以外のgetからのリクエストをURLに引き継ぐ ?>
+   
+    {{$imports->appends(Request::except("page"))->links() }}
   </table>
 </body>
 <script type="text/javascript" src="js/test.js"></script>
+<script src="js/email.js" type="text/javascript" charset="utf-8"></script>
+
 </html>
 

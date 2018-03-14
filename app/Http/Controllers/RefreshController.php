@@ -9,11 +9,9 @@ use App\Import;
 
 class RefreshController extends Controller
 {
-    public function refresh(Request $request){
-        //dd("aaaaaaaaa");
-        $mail=Import::all();
-        // $mail=Import::paginate(10);
-    
+    public function refresh(Request $request)
+    {
+        $mail=Import::withTrashed()->paginate(10);
         return view('maillist')->with('imports',$mail);
     }
 }
