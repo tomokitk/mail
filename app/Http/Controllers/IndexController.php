@@ -12,47 +12,10 @@ use Log;
 
 class IndexController extends Controller
 {
-    //requestにしないと入らない
-    public function update(FormIndexRequest $request)
+   
+    public function update(Request $request)
     {
-
-        Log::debug($request);
-        // $validator=Validator::make(
-        //     $request->all(),
-        //     [
-        //     'e_mail' => 'required|email',
-        //     'postcode' =>'present|digits:7',
-        //     'TEL' =>'present|size:12',
-        //     'TELdepartment' =>'present|size:12',
-        //     'TELdirect' =>'present|size:12',
-        //     'FAX' =>'present|size:12',
-        //     'phonenumber' =>'present|size:13',
-        //     'URL' => 'present|url',
-        //     'trade_day' => 'present|date',
-        //     'eightfrinds_num' => 'present|number',
-        //     ]
-        //     );
-        //     if ($validator->fails()) {
-        //         $message="適切な値がcsvに入っていません";
-        //            return redirect('maillist')
-        //                                     ->withErrors($validator)
-        //                                     ->withInput()
-        //                                     ->with('warning_messages',$message);
-
-        // // ->validate($request,[
-        // //     'e_mail' => 'required',
-        // //     'e_mail' => 'email',
-        // //     // //to do  以下の設定
-        // //     'postcode' =>'digits:7',
-        // //     'TEL' =>'size:13',
-        // //     // 'TELdepartment' =>'size:12',
-        //     // 'TELdirect' =>'size:12',
-        //     // 'FAX' =>'size:12',
-        //     // 'phonenumber' =>'size:13',
-        //     // 'URL' => 'url',
-        //     // 'trade_day' => 'date',
-        //     // 'eightfrinds_num' => 'number',
-        // ]); 
+        
         $update = Import::where("id","=",$request->id)->first();
         $update->company = $request->company;
         $update->department = $request->department;
@@ -73,7 +36,7 @@ class IndexController extends Controller
         $update->question = $request->question;
         $update->deleted_at = $request->deleted_at;
         $update->save(); 
-        Log::debug($update);
+       
         return redirect('/maillist');
     }
         
