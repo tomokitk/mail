@@ -23,6 +23,10 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+
+    
+    
+
     @if(session('warning_messages'))
     <div class="container mt-2">
         <div class="alert alert-danger">
@@ -54,7 +58,7 @@
       <p>department<input name="index" class="department" type="text" value=""></p>
       <p>position<input name="index" class="position" type="text" value=""></p>
       <p>name<input name="index" class="name" type="text" value=""></p>
-      <p>e_mail<input name="index" class="e_mail" type="text" value="" data-validation-engine="validate[required, custom[email], maxSize[80]]" ></p>
+      <p>e_mail<input name="index" class="e_mail" type="text" value="" data-validation-engine="validate[required, custom[email]" ></p>
       <p>postcode<input name="index" class="postcode" type="text" value="" data-validation-engine="validate[custom[postcode]]"></p>
       <p>address<input name="index" class="address" type="text" value=""></p>
       <p>TEL<input name="index" class="TEL" type="text" value="" data-validation-engine="validate[custom[phone]]"></p>
