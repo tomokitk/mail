@@ -76,24 +76,25 @@
     </div>
   </div>
   <!-- END: dialog -->
+
   <div class="users">
  <a href="/users">メール配信停止</a> 
  {{ csrf_field() }}
   </div>
-  <script type="text/javascript" src="js/test.js"></script>
-  <h1>管理者画面</h1>
-  <form method="post" action="{{url('/import')}}" enctype="multipart/form-data">
-    {{ csrf_field() }}
-    <p>ファイルを選択してください</p>
-    <input type="file" name="csv_file" id="inputFile" >
-    <input type="submit" name="csv_file"  value="csv_import">
-    <div class="col-sm-4" style="padding:20px 0; padding-left:0px;"></div>
-  </form>
-
-  <form method="post" action="{{url('/export')}}" >
+  <div class="outer">
+    <script type="text/javascript" src="js/test.js"></script>
+    <h1>メール管理します！</h1>
+    <form class="selectFile" method="post" action="{{url('/import')}}" enctype="multipart/form-data">
+      {{ csrf_field() }}
+      <input type="file" name="csv_file" id="inputFile" >
+      <input type="submit" name="csv_file"  value="csv_import">
+    </form>
+  </div>
+  
+  <form class="export" method="post" action="{{url('/export')}}" >
     {{ csrf_field() }}
     <!-- <nameでコントローラーに渡す。> -->
-    <input type="submit"  value="csv export">
+    <input type="submit" class="export" value="csv export">
 
     @if(isset($keyword))
       <input type="hidden" name="name" value="{{$keyword}}">
@@ -204,8 +205,10 @@
     @endif
   </form>
 
-
+  </div>
+ 
   <form class="form-inline" action="{{('/search')}}" >
+    <h2>検索内容を項目欄に入れてください</h2>
     <div class="form-group">
       @if(isset($keyword))
         <input type="text" name="name" value="{{$keyword}}" placeholder="名前">
@@ -322,34 +325,17 @@
       @endif
 
      
-    </div>
-
+    
     <input type="submit" value="検索" class="btn btn-info"> 
-
+    </div>
   </form>
 
-  <form class="form-inline" action="{{'/refresh'}}">
-    <input type="submit" value="初期化">
+  <form class="refresh" action="{{'/refresh'}}">
+    <input type="submit" value="検索結果を戻す">
   </form>
-  <!--  </div> -->
-
-  <style>
-    .table4 {
-    border-collapse: collapse;
-    width: 250px;
-    }
-    .table4 th, .table4 td {
-    border: 1px solid gray;
-    }
-    .col-md-4{
-    padding-right: 15px;
-    padding-left: 15px;
-    }
-  </style>
-
-
-  <table class="table" border=1>
-    <tr>
+  
+<table class="table" border=1 >
+  
       <th>ID</th>
       <th>会社名</th>
       <th>部署名</th>
@@ -371,8 +357,7 @@
       <th>配信禁止</th>
       <th>アクションキー</th>
       <th>アクションキー2</th>
-    </tr>
-
+   
     @foreach($imports as $import)
     <form method=post action="{{'/delete'}}">
       {{ csrf_field() }}
@@ -381,6 +366,7 @@
       @else
       <tr id = "normal" class="row_{{$import->id}}">
       @endif
+      
         <td class="id">{{$import->id}}</td>
         <td class="company">{{$import->company}}</td>
         <td class="department">{{$import->department}}</td>
@@ -415,13 +401,14 @@
           <input name="index" class="index index_{{$import->id}}" type="button" value="index" disabled>
           @endif
         </td>
-      </tr>
+      
     </form>
     @endforeach
    
     {{$imports->appends(Request::except("page"))->links() }}
+  </tbody>
   </table>
-</body>
+
 <script type="text/javascript" src="js/test.js"></script>
 <script src="js/email.js" type="text/javascript" charset="utf-8"></script>
 

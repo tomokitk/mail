@@ -15,8 +15,8 @@
         <input name="e_mail" placeholder="メールアドレスを入力" type="text" data-validation-engine="validate[required, custom[email], maxSize[80]]">
         <input name="stopmail" type="submit" value="配信停止">
     </form>
-        @if(isset($error_message))
-        <P>{{$error_message}}<p>
+        @if(isset($responce_message))
+        <P>{{$responce_message}}<p>
         @endif     
 </body>
 <script src="js/email.js" type="text/javascript" charset="utf-8"></script>

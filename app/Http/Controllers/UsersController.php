@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use App\Users;
 use App\Import;
+use Log;
 
 class UsersController extends Controller
 {
@@ -21,14 +22,16 @@ class UsersController extends Controller
             'e_mail' => 'email',
             ]); 
         $user_mail=$request->e_mail;
-        $stops = Import::where("e_mail","=",$user_mail)->first(); //get でも可（ただ、今回はそんなに重複のアドレスが多くないためfirst）
-        if(isset($stops)){
-            foreach($stops as $stop)
-            $stop->delete();
-            return view('users');
-        }else{
+        $email = Import::where("e_mail","=",$user_mail)->first(); 
+        if(isset($email))
+        {
+            $success_message="退会処理が完了しました";
+            $email->delete();
+            return view('users')->with('responce_message',$success_message);
+        }else
+        {
             $errors_message="そのアドレスは登録されていません";
-            return view('users')->with('error_message',$errors_message);
+            return view('users')->with('responce_message',$errors_message);
         } 
     }
 }
