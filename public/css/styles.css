@@ -79,7 +79,8 @@ body{
     background: #f1f1f1;
   }
   .table th{
-    background: #91d2f3
+    background: #91d2f3;
+    word-wrap:break-all;
   }
   table tr:hover {
     background-color: #cdeaf8;  /* マウスオーバー時の行の背景色 */
@@ -90,24 +91,26 @@ body{
     padding: 0px;  /* 内側の余白をゼロに */
     border: 20px solid 1px #0c0c0c; /* 枠線を指定(太さ30pxの実線で黄緑色) */
     font-size: 80%;
-    word-wrap: break-word 
+    overflow-wrap : break-word;
+    /* word-wrap: break-word ; */
+    
     /* border-collapse: collapse; */
   }
   .form-inline{
     position: relative;
-    width: 80%;
-    margin: 0 auto;
-    width: 1000px;
+    width: 100%;
+    margin-right: 00px;
+    width: 1000px; 
     padding: 50px;  /* 内側の余白をゼロに */
     text-align: center;
     background-color: #e5e5e5;
   }
   .form-inline h2{
     position: relative;
-    left:175px;
+    left:250px;
   }
   .form-group{
-    margin: 50px;   /* 外側の余白をゼロに */
+    margin: 30px;   /* 外側の余白をゼロに */
     padding: 0px;  /* 内側の余白をゼロに */
   }
   .outer{
@@ -121,18 +124,22 @@ body{
     padding: 0px;  /* 内側の余白をゼロに */
   }
 
-  .refresh{
-    position:relative;
-    top:135px;
-    margin: 50px;   /* 外側の余白をゼロに */
+  .refresh {
     padding: 0px; 
-  }
-
-  .export{
-    position:relative;
-    top:338px;
-    left: 95px; 
     z-index: 2;
-
+    margin-right: 10px;
   }
 
+
+  .export {
+    top:385px;
+    right: 500px; 
+    z-index: 2;
+  }
+
+  .parent{
+    position: relative;
+    width: 250px;
+    display: flex;
+    justify-content: space-between;
+  } 
