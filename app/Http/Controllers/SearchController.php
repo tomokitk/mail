@@ -24,7 +24,7 @@ class SearchController extends Controller
         $query->where('company','like','%'.$keyword['company'].'%');
         }
         
-        if(!empty($keyword['kdepartment']))
+        if(!empty($keyword['department']))
         {
         $query->where('department','like','%'.$keyword['department'].'%');
         }
