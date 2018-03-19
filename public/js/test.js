@@ -1,6 +1,5 @@
 (function() {
     'use strict';
-
     var open = document.getElementById("open");
     var close = document.getElementById("close");
     var modal = document.getElementById("modal");
@@ -13,7 +12,6 @@
         dialog.show();
         var rowClass = getRowFromClassName(event.target.className);
         var rowDOM = $(rowClass);
-        console.log(rowDOM);
         dialog.find ('input.id').val(rowDOM.find('.id')[0].textContent);
         dialog.find ('input.company').val(rowDOM.find('.company')[0].textContent);
         dialog.find ('input.department').val(rowDOM.find('.department')[0].textContent);
@@ -71,7 +69,6 @@
         var value_eightfriends_num = dialog.find('input.eightfriends_num').val();
         var value_now_dating = dialog.find('input.now_dating').val();
         var value_question = dialog.find('input.question').val();
-        // var value_deleted_at = dialog.find('input.deleted_at').val();
         $.ajax({
             headers: {
                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -97,14 +94,8 @@
                 'trade_day':value_trade_day,
                 'eightfriends_num':value_eightfriends_num,
                 'now_dating':value_now_dating,
-                'question':value_question,
-                // 'deleted_at':value_deleted_at,
-                
+                'question':value_question,                
             },
-            // cache: false,
-            // contentType: false,
-            // processData: false,
-
             success:function(response) {
                 console.log(response);
             }
@@ -128,9 +119,8 @@
         mask.className="hidden";
        
     });
-    
-})();  
-
+})();
+  
 (document).ready(function(){
     $(".index").validationEngine();
    });

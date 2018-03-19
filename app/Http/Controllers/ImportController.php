@@ -15,11 +15,6 @@ class ImportController extends Controller
 {
     public function import(Request $request)
     {
-        // $this->validate($request,[
-        // 'e_mail' => 'required',
-        // //      'e_mail' => 'email',
-        // // ]);
-    
         $file = $request->file('csv_file');
         $data = file_get_contents($file);
         $data = mb_convert_encoding($data, 'UTF-8', 'sjis-win');
@@ -28,23 +23,16 @@ class ImportController extends Controller
         rewind($temp);
         while (($data = fgetcsv($temp, 0, ",")) !== FALSE) {
             $csv[] = $data;
-            // $csv->validate($request,[
-            //     'e_mail' => 'required',
-            //     'e_mail' => 'email',
-            //     ]);
         }
         fclose($temp);
-        
-        //to do
-        //where 以降でflag を建てて１ループ目で止める。
-        $firstFlag=true;
+        $Flag=true;
         $validationFlag=true;
         foreach($csv as $row)
         {
-            if($firstFlag==false)
+            if($Flag==false)
             {
-                if($validationFlag==true)
-                {
+                // if($validationFlag==true)
+                // {
                         $getValidationData=array(
                             "company"=>$row[0],
                             "department"=>$row[1],
@@ -64,7 +52,6 @@ class ImportController extends Controller
                             "now_dating"=>$row[15],
                             "question"=>$row[16],
                             );
-                            
                             $rules = [
                                 'e_mail' => 'email',
                                 'e_mail' => 'required',
@@ -76,12 +63,9 @@ class ImportController extends Controller
                                 'phonenumber' =>'between:3,13',
                                 'URL' => 'present|url',
                                 'trade_day' => 'present|date',
-                               
                             ];
                             $validator = Validator::make($getValidationData,$rules
                             );
-                            Log::debug($getValidationData);
-                            
                             if ($validator->fails()) {
                                 $message="適切な値がcsvに入っていません";
                                 return redirect('maillist')
@@ -89,80 +73,67 @@ class ImportController extends Controller
                                             ->withInput()
                                            ->with('warning_messages',$message);
                             }
-                            // $getValidationData->validate($row,[
-                            //     'e_mail' => 'required',
-                            //     'e_mail' => 'email',
-                            //     ]);
-                    }else if($validationFlag==false){
-                        $errors_message="重複があります";
-                        // $mail=Import::all();
-                        // $mail=Import::all();
+                // }else if($validationFlag==false){
 
-                        return redirect('/maillist')->with('status',$getValidationData->e_mail);
-                        // dd($getValidationData->e_mail);
-                        // return view('maillist')->with('alert',$errors_message)
-                        //                         ->with('imports',$mail)
-                        //                         ->with('errorRecord',$getValidationData->e_mail);
-                        
-                        // return view('maillist')->with('error_message',$errors_message  //                        ->with('imports',$mail);
+                    //to do 定時以降行う
+                    //多分foreachのデータが一つ目しかループしていない。
+                    if($getValidationDatas = Import::where("e_mail","=",$row[4])->Where("name","=",$row[3])->get())
+                    {
+                        Log::debug($getValidationDatas);   
+                        foreach($getValidationDatas as $getValidationData)
+                        {
+                        $validationMail=$getValidationData->e_mail;
+                        $validationName=$getValidationData->name;
+                       
+                        return redirect('/maillist')->with('status',$validationMail)
+                                                    ->with('status_name',$validationName);
+                       }
+                   
                     }
-                if($getValidationData = Import::where("e_mail","=",$row[4])->first())
-                {
-                            $validationFlag=false; 
-                }
-                
+                // if($getValidationDatas = Import::where("e_mail",$row[4])->Where("name",$row[3])->get())
+                // {
+                //     Log::debug($getValidationDatas);   
+                      
+                //     $validationFlag=false; 
+                // }   
             }
-            
-        $firstFlag=false;
         }
-        //一回目は真
+        $Flag=false;
+        
+        // if($firstFlag==false)
+        // {
+        // return redirect('/maillist')->with('status',$validationMail)
+        //                             ->with('status_name',$validationName);
         $firstFlag=true;
-        foreach($csv as $row){
-    
-            if($firstFlag==false)
+        
+            foreach($csv as $row)
             {
-                $getdata = new Import;
-                //  $importArray=array(
-                    $getdata ->company=$row[0];
-                    $getdata ->department=$row[1];
-                    $getdata ->position=$row[2];
-                    $getdata ->name=$row[3];
-                    $getdata ->e_mail=$row[4];
-                    $getdata ->postcode=$row[5];
-                    $getdata ->address=$row[6];
-                    $getdata ->TEL=$row[7];
-                    $getdata ->TELdepartment=$row[8];
-                    $getdata ->TELdirect=$row[9];
-                    $getdata ->FAX=$row[10];
-                    $getdata ->phonenumber=$row[11];
-                    $getdata ->URL=$row[12];
-                    $getdata ->trade_day=$row[13];
-                    $getdata ->eightfriends_num=$row[14];
-                    $getdata ->now_dating=$row[15];
-                    $getdata ->question=$row[16];
-                                // );
-                    // $getdata ->validate($row,[
-                    //     if (filter_var($getdata->e_mail, FILTER_VALIDATE_EMAIL)){
-                    // 'e_mail' => 'required',
-                    // 'e_mail' => 'email',
-                    
-                    $getdata->save();
-                    
-                }
-        //ここで偽になる
-        $firstFlag=false;
+                if($firstFlag==false)
+                {
+                    $getdata = new Import;
+                        $getdata ->company=$row[0];
+                        $getdata ->department=$row[1];
+                        $getdata ->position=$row[2];
+                        $getdata ->name=$row[3];
+                        $getdata ->e_mail=$row[4];
+                        $getdata ->postcode=$row[5];
+                        $getdata ->address=$row[6];
+                        $getdata ->TEL=$row[7];
+                        $getdata ->TELdepartment=$row[8];
+                        $getdata ->TELdirect=$row[9];
+                        $getdata ->FAX=$row[10];
+                        $getdata ->phonenumber=$row[11];
+                        $getdata ->URL=$row[12];
+                        $getdata ->trade_day=$row[13];
+                        $getdata ->eightfriends_num=$row[14];
+                        $getdata ->now_dating=$row[15];
+                        $getdata ->question=$row[16];
+                        $getdata->save(); 
+                    }
+            $firstFlag=false;
             }
-       $seccessMessage="読み込み完了しました";
+        $seccessMessage="読み込み完了しました";
         return redirect('/maillist')->with('seccessMessage',$seccessMessage);
     }         
-    
-    // private function defineValidationRules()
-    // {
-    //     return [
-           
-    //         'e_mail' => 'required',
-    //     ];
-    // }
-
 }
 

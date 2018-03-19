@@ -13,7 +13,6 @@ class SearchController extends Controller
         $keyword = $request->all();    
         #クエリ生成
         $query = Import::query();
-        #もしキーワードがあったら
         if(!empty($keyword['name']))
         {
         $query->where('name','like','%'.$keyword['name'].'%');
@@ -125,13 +124,6 @@ class SearchController extends Controller
                                ->with('keyword16',empty($keyword['now_dating'])?"":$keyword['now_dating'])
                                ->with('keyword17',empty($keyword['question'])?"":$keyword['question'])
                                ->with('keyword18',empty($keyword['id'])?"":$keyword['id']);
-                              
-                              
-                               
-
-
-}
-
-
+    }   
 }
 

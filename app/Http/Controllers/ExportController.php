@@ -8,16 +8,18 @@ use App\Import;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\ServiceProvider;
 use log;
+
 class ExportController extends Controller
 {
     public function export(Request $request)
     {
-         $keyword = $request->all();
-         $query = Import::query();
+        $keyword = $request->all();
+        $query = Import::query();
             if(!empty($keyword['name']))
             {
             $query->where('name','like','%'.$keyword['name'].'%');
             }
+            
             if(!empty($keyword['company']))
             {
             $query->where('company','like','%'.$keyword['company'].'%');
@@ -107,22 +109,16 @@ class ExportController extends Controller
         $csvheader = ["id","会社名","部署名","役職名","氏名","メールアドレス","郵便番号","住所","TEL会社","TEL部門","TEL直通","FAX","携帯番号","URL","名刺交換","Eightでつながっている人","再データ化中の名刺","？を含んだデータ"];
         fputcsv($stream,$csvheader);
         foreach ($users as $user){
-          fputcsv($stream, $user);
+        fputcsv($stream, $user);
         }
-        
         rewind($stream);
-        
         $csv = str_replace(PHP_EOL, "\r\n", stream_get_contents($stream));
         $csv = mb_convert_encoding($csv, 'SJIS-win', 'UTF-8');
-        // Log::debug($csv);
         $filename = 'test.csv';
         $headers = [
-        'Content-Type' => 'text/csv',
-        'Content-Disposition' => 'attachment; filename="' . $filename . '"'
-        
-        ];
-    
-  
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="' . $filename . '"'
+            ];
     return Response::make($csv,200, $headers);
     }  
 }
