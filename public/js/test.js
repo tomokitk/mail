@@ -27,6 +27,7 @@
         dialog.find ('input.phonenumber').val(rowDOM.find('.phonenumber')[0].textContent);
         dialog.find ('input.URL').val(rowDOM.find('.URL')[0].textContent);
         dialog.find ('input.trade_day').val(rowDOM.find('.trade_day')[0].textContent);
+        dialog.find ('input.inputCSV').val(rowDOM.find('.inputCSV')[0].textContent);
         dialog.find ('input.eightfriends_num').val(rowDOM.find('.eightfriends_num')[0].textContent);
         dialog.find ('input.now_dating').val(rowDOM.find('.now_dating')[0].textContent);
         dialog.find ('input.question').val(rowDOM.find('.question')[0].textContent);
@@ -66,6 +67,7 @@
         var value_phonenumber = dialog.find('input.phonenumber').val();
         var value_URL = dialog.find('input.URL').val();
         var value_trade_day = dialog.find('input.trade_day').val();
+        var value_inputCSV = dialog.find('input.inputCSV').val();
         var value_eightfriends_num = dialog.find('input.eightfriends_num').val();
         var value_now_dating = dialog.find('input.now_dating').val();
         var value_question = dialog.find('input.question').val();

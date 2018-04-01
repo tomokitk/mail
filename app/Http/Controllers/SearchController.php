@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Maillist;
 use App\Import;
+use Log;
 
 class SearchController extends Controller
 {
@@ -47,30 +48,40 @@ class SearchController extends Controller
         {
         $query->where('address','like','%'.$keyword['address'].'%');
         }
+        // if(!empty($keyword['TEL']))
+        // {
+        // $query->whereRaw('replace(TEL,"-","")= :TEL',[$keyword['TEL']]);
+        // }
 
+        // todo 検索で入力されたハイフンを除去したものとDBを比較する
         if(!empty($keyword['TEL']))
         {
-        $query->where('TEL','like','%'.$keyword['TEL'].'%');
+        $TEL = str_replace(array('-', 'ー', '−', '―', '‐'), "", $keyword['TEL']);
+        $query->where('TEL','like','%'.$TEL.'%');
         }
 
         if(!empty($keyword['TELdepartment']))
         {
-        $query->where('TELdepartment','like','%'.$keyword['TELdepartment'].'%');
+        $TELdepartment = str_replace(array('-', 'ー', '−', '―', '‐'), "", $keyword['TELdepartment']);
+        $query->where('TELdepartment','like','%'.$TELdepartment.'%');
         }
 
         if(!empty($keyword['TELdirect']))
         {
-        $query->where('TELdirect','like','%'.$keyword['TELdirect'].'%');
+        $TELdirect = str_replace(array('-', 'ー', '−', '―', '‐'), "", $keyword['TELdirect']);
+        $query->where('TELdirect','like','%'.$TELdirect.'%');
         }
 
         if(!empty($keyword['FAX']))
         {
-        $query->where('FAX','like','%'.$keyword['FAX'].'%');
+        $FAX = str_replace(array('-', 'ー', '−', '―', '‐'), "", $keyword['FAX']);
+        $query->where('FAX','like','%'.$FAX.'%');
         }
 
         if(!empty($keyword['phonenumber']))
         {
-        $query->where('phonenumber','like','%'.$keyword['phonenumber'].'%');
+        $phonenumber = str_replace(array('-', 'ー', '−', '―', '‐'), "", $keyword['phonenumber']);
+        $query->where('phonenumber','like','%'.$phonenumber.'%');
         }
 
         if(!empty($keyword['URL']))
@@ -103,7 +114,10 @@ class SearchController extends Controller
         $query->where('id','like','%'.$keyword['id'].'%');
         }
 
+        // $csv = str_replace("-","",$query);
+        // $mail = $csv->get();
         $mail = $query->get();
+        // log::debug($mail);
         $mail = $query->paginate(5);
         return view('maillist')->with('imports',$mail)
                                ->with('keyword',empty($keyword['name'])?"":$keyword['name'])

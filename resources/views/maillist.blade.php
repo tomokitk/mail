@@ -23,6 +23,7 @@
             </div>
           @endif
 
+         
         @if(session('status'))
           <div class="container mt-2">
             <div class="alert alert-danger">
@@ -177,10 +178,16 @@
               <input type="text" name="URL" value="" placeholder="URL">
             @endif
            
-            @if(isset($keyword14))
+            {{--  @if(isset($keyword14))
               <input type="text" name="trade_day" value="{{$keyword14}}" placeholder="名刺交換日">
             @else
               <input type="text" name="trade_day" value="" placeholder="名刺交換日">
+            @endif  --}}
+
+            @if(isset($keyword14))
+              <input type="text" name="inputCSVdata" value="{{$keyword14}}" placeholder="名刺データ入力日">
+            @else
+              <input type="text" name="inputCSVdata" value="" placeholder="名刺データ入力日">
             @endif
            
             @if(isset($keyword15))
@@ -218,7 +225,7 @@
       <div class="col-lg">
         <div class="refreshAndexport">
               <form class="refresh" action="{{'/refresh'}}">
-                <input type="submit" value="検索結果を戻す">
+                <input type="submit" value="一覧に戻る">
               </form>
               <form class="export" method="post" action="{{url('/export')}}" >
               {{ csrf_field() }}
@@ -308,6 +315,12 @@
               @else
                 <input type="hidden" name="trade_day" value="" >
               @endif
+              
+              {{--  @if(isset($keyword15))
+                <input type="hidden" name="inputCSVdata" value="{{$keyword15}}">
+              @else
+                <input type="hidden" name="inputCSVdata" value="" >
+              @endif  --}}
 
               @if(isset($keyword15))
                 <input type="hidden" name="eightfriends_num" value="{{$keyword15}}">
@@ -356,12 +369,14 @@
             <th>携帯番号</th>
             <th>URL</th>
             <th>名刺交換日</th>
+            <th>名刺データ入力日</th>
             <th>Eightでつながっている人</th>
             <th>再データ化中の名刺</th>
             <th>'?'を含んだデータ</th>
             <th>配信禁止</th>
-            <th>アクションキー</th>
-            <th>アクションキー2</th>
+            <th>配信停止ボタン</th>
+            <th>編集ボタン</th>
+            
         
           @foreach($imports as $import)
           <form method="post" action="{{'/delete'}}">
@@ -371,7 +386,7 @@
             @else
             <tr id = "normal" class="row_{{$import->id}}">
             @endif
-            
+                
               <td class="id">{{$import->id}}</td>
               <td class="company">{{$import->company}}</td>
               <td class="department">{{$import->department}}</td>
@@ -387,6 +402,7 @@
               <td class="phonenumber">{{$import->phonenumber}}</td>
               <td class="URL">{{$import->URL}}</td>
               <td class="trade_day">{{$import->trade_day}}</td>
+              <td class="inputCSV">{{$import->created_at}}</td>
               <td class="eightfriends_num">{{$import->eightfriends_num}}</td>
               <td class="now_dating">{{$import->now_dating}}</td>
               <td class="question">{{$import->question}}</td>
