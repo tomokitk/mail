@@ -4,7 +4,5 @@ $(document).ready(function(){
     $("#validationForm").validationEngine({
                                      validateNonVisibleFields: true,
                                      updatePromptsPosition:true
-    
-                                    });
-                                    // return false;                                
+                                    });                                
                                 });

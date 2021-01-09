@@ -1,14 +1,5 @@
 <!DOCTYPE html>
 <html lang="ja">
-<style>
-      
-
-      
-
-</style>
-
-
-
 <head>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
@@ -22,7 +13,6 @@
   <title>input form</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
-
   <body>
     <div class="container">
           @if(session('warning_messages'))
@@ -33,10 +23,13 @@
             </div>
           @endif
 
-        @if (session('status'))
+         
+        @if(session('status'))
           <div class="container mt-2">
             <div class="alert alert-danger">
-            {{ session('status')}}が重複しています。読み込みたいcsvファイルから削除したのち、再度読み込んでください。
+            {{ session('status')}}
+            {{session('status_name')}}
+            が重複しています。読み込みたいcsvファイルから削除したのち、再度読み込んでください。
             </div>
           </div>
         @elseif (session('seccessMessage'))
@@ -70,19 +63,18 @@
             <p>now_dating<input name="index" class="now_dating" type="text" value=""></p>
             <p>question<input name="index" class="question" type="text" value=""></p>
             <br>
-            <button class="dialog_close">CLOSE</button>
+            <button class="dialog_close">閉じる</button>
             <br>
-              {{--  todo  disabled  --}}
-            <button class="dialog_submit">SUBMIT</button>
+            <button class="dialog_submit">変更する</button>
           </form> 
           </div>
         </div>
         <!-- END: dialog -->
 
-        <div class="users">
+    <div class="users">
       <a href="/users">メール配信停止</a> 
       {{ csrf_field() }}
-        </div>
+    </div>
         <div class="row">
             <div class="col-lg">
               <div class="outer">
@@ -91,7 +83,7 @@
                 <form class="selectFile" method="post" action="{{url('/import')}}" enctype="multipart/form-data">
                   {{ csrf_field() }}
                   <input type="file" name="csv_file" id="inputFile" >
-                  <input type="submit" name="csv_file"  value="csv_import">
+                  <input type="submit" name="csv_file"  value="読み込み">
                 </form>
               </div>
             </div>
@@ -186,10 +178,16 @@
               <input type="text" name="URL" value="" placeholder="URL">
             @endif
            
-            @if(isset($keyword14))
+            {{--  @if(isset($keyword14))
               <input type="text" name="trade_day" value="{{$keyword14}}" placeholder="名刺交換日">
             @else
               <input type="text" name="trade_day" value="" placeholder="名刺交換日">
+            @endif  --}}
+
+            @if(isset($keyword14))
+              <input type="text" name="inputCSVdata" value="{{$keyword14}}" placeholder="名刺データ入力日">
+            @else
+              <input type="text" name="inputCSVdata" value="" placeholder="名刺データ入力日">
             @endif
            
             @if(isset($keyword15))
@@ -225,15 +223,14 @@
     </div>
     <div class="row">
       <div class="col-lg">
-        <div class="parent">
+        <div class="refreshAndexport">
               <form class="refresh" action="{{'/refresh'}}">
-                <input type="submit" value="検索結果を戻す">
+                <input type="submit" value="一覧に戻る">
               </form>
-            
               <form class="export" method="post" action="{{url('/export')}}" >
               {{ csrf_field() }}
               <!-- <nameでコントローラーに渡す。> -->
-              <input type="submit" class="export" value="csv export">
+              <input type="submit" class="export" value="ダウンロード">
 
               @if(isset($keyword))
                 <input type="hidden" name="name" value="{{$keyword}}">
@@ -318,6 +315,12 @@
               @else
                 <input type="hidden" name="trade_day" value="" >
               @endif
+              
+              {{--  @if(isset($keyword15))
+                <input type="hidden" name="inputCSVdata" value="{{$keyword15}}">
+              @else
+                <input type="hidden" name="inputCSVdata" value="" >
+              @endif  --}}
 
               @if(isset($keyword15))
                 <input type="hidden" name="eightfriends_num" value="{{$keyword15}}">
@@ -366,12 +369,14 @@
             <th>携帯番号</th>
             <th>URL</th>
             <th>名刺交換日</th>
+            <th>名刺データ入力日</th>
             <th>Eightでつながっている人</th>
             <th>再データ化中の名刺</th>
             <th>'?'を含んだデータ</th>
             <th>配信禁止</th>
-            <th>アクションキー</th>
-            <th>アクションキー2</th>
+            <th>配信停止ボタン</th>
+            <th>編集ボタン</th>
+            
         
           @foreach($imports as $import)
           <form method="post" action="{{'/delete'}}">
@@ -381,7 +386,7 @@
             @else
             <tr id = "normal" class="row_{{$import->id}}">
             @endif
-            
+                
               <td class="id">{{$import->id}}</td>
               <td class="company">{{$import->company}}</td>
               <td class="department">{{$import->department}}</td>
@@ -397,6 +402,7 @@
               <td class="phonenumber">{{$import->phonenumber}}</td>
               <td class="URL">{{$import->URL}}</td>
               <td class="trade_day">{{$import->trade_day}}</td>
+              <td class="inputCSV">{{$import->created_at}}</td>
               <td class="eightfriends_num">{{$import->eightfriends_num}}</td>
               <td class="now_dating">{{$import->now_dating}}</td>
               <td class="question">{{$import->question}}</td>
@@ -404,16 +410,16 @@
               <td>
                 <input name="id" type="hidden" value="{{$import->id}}">
                 @if(!isset($import->deleted_at))
-                <input name="edit" type="submit" value="delete">
+                <input name="edit" type="submit" value="配信停止">
                 @else
-                <input name="edit" type="submit" value="delete" disabled>
+                <input name="edit" type="submit" value="配信停止" disabled>
                 @endif
               </td>
               <td>
                 @if(!isset($import->deleted_at))
-                <input name="index" class="index index_{{$import->id}}" type="button" value="index">
+                <input name="index" class="index index_{{$import->id}}" type="button" value="編集">
                 @else
-                <input name="index" class="index index_{{$import->id}}" type="button" value="index" disabled>
+                <input name="index" class="index index_{{$import->id}}" type="button" value="編集" disabled>
                 @endif
               </td>
           </form>

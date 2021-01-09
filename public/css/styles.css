@@ -1,4 +1,4 @@
-@charset "utf-8" ;
+@charset "utf-8";
 body{
     font-size:14px;
     font-family: Verdana, sans-serif;
@@ -129,15 +129,13 @@ body{
     z-index: 2;
     margin-right: 10px;
   }
-
-
   .export {
     top:385px;
     right: 500px; 
     z-index: 2;
   }
 
-  .parent{
+  .refreshAndexport{
     position: relative;
     width: 250px;
     display: flex;
